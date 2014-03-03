@@ -8,10 +8,227 @@
  * @license MIT
  * @version 1.6.1
  */
+/* TYPOGRAPHY (Baseline Corrections)
+================================================== */
+/* line 20, ../sass/layout.scss */
+h1 {
+  line-height: 49px;
+  margin-bottom: 14px;
+}
+
+/* line 21, ../sass/layout.scss */
+h2 {
+  line-height: 42px;
+  margin-bottom: 7px;
+}
+
+/* line 22, ../sass/layout.scss */
+h3 {
+  line-height: 35px;
+  margin-bottom: 7px;
+}
+
+/* line 23, ../sass/layout.scss */
+h4 {
+  line-height: 28px;
+  margin-bottom: 7px;
+}
+
+/* line 24, ../sass/layout.scss */
+h5 {
+  line-height: 21px;
+}
+
+/* line 26, ../sass/layout.scss */
+p {
+  margin: 0 0 21px 0;
+}
+
+/* line 27, ../sass/layout.scss */
+p.lead {
+  line-height: 28px;
+}
+
+/* BLOCKQUOTES (Baseline Corrections)
+================================================== */
+/* line 32, ../sass/layout.scss */
+blockquote, blockquote p {
+  line-height: 21px;
+}
+
+/* line 33, ../sass/layout.scss */
+blockquote {
+  margin: 0 0 21px;
+  padding: 7px 28px 0 19px;
+}
+
+/* line 35, ../sass/layout.scss */
+hr {
+  margin: 14px 0 28px;
+}
+
+/* LISTS (Baseline Corrections)
+================================================== */
+/* line 39, ../sass/layout.scss */
+ul, ol {
+  margin-bottom: 21px;
+}
+
+/* line 40, ../sass/layout.scss */
+li {
+  line-height: 21px;
+  margin-bottom: 14px;
+}
+
+/* line 42, ../sass/layout.scss */
+.row {
+  margin-bottom: 21px;
+}
+
+/* BUTTONS (Baseline Corrections)
+=================================================== */
+/* line 48, ../sass/layout.scss */
+button {
+  border: none;
+  text-shadow: none !important;
+}
+
+/* line 52, ../sass/layout.scss */
+button:hover {
+  border: none;
+  color: white;
+  text-shadow: none !important;
+}
+
 /* SITE STYLES
  * ------------------------------------------------ */
 /* Add site styles here */
 /* For example: a { color: #000; } */
+/* line 63, ../sass/layout.scss */
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* line 67, ../sass/layout.scss */
+.left {
+  float: left;
+}
+
+/* line 70, ../sass/layout.scss */
+.right {
+  float: right;
+}
+
+/* line 74, ../sass/layout.scss */
+button {
+  font-weight: 400;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  color: white;
+  padding: 0 14px;
+  margin-left: 0px;
+  margin-top: 7px;
+  font-size: 14px;
+}
+
+/* line 88, ../sass/layout.scss */
+body {
+  background-color: #51a6da;
+}
+
+/* line 92, ../sass/layout.scss */
+header {
+  background-color: #db4e4f;
+  border-bottom: 3px solid #b84142;
+}
+/* line 96, ../sass/layout.scss */
+header *, header *:hover {
+  color: white;
+}
+/* line 101, ../sass/layout.scss */
+header div {
+  margin-top: 7px;
+}
+/* line 105, ../sass/layout.scss */
+header h2 {
+  text-shadow: #b84142 2px 2px 0;
+}
+/* line 109, ../sass/layout.scss */
+header ul {
+  padding-top: 14px;
+}
+/* line 113, ../sass/layout.scss */
+header li {
+  list-style-type: none;
+  display: inline;
+  margin-left: 7px;
+}
+/* line 119, ../sass/layout.scss */
+header a {
+  text-decoration: none;
+}
+/* line 122, ../sass/layout.scss */
+header a.current, header a:hover {
+  text-decoration: underline;
+}
+
+/* line 127, ../sass/layout.scss */
+.animals {
+  margin-top: 28px;
+}
+/* line 130, ../sass/layout.scss */
+.animals .animal {
+  margin-bottom: 30px;
+  background-color: white;
+  border-bottom: 3px solid #4cd59c;
+  width: 100%;
+  height: 150px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+}
+/* line 138, ../sass/layout.scss */
+.animals .animal .a-image {
+  width: 100%;
+  height: 150px;
+  background-image: url("http://placehold.it/350x150");
+  background-size: cover;
+  background-position: 50%;
+  -moz-border-radius-topleft: 3px;
+  -webkit-border-top-left-radius: 3px;
+  border-top-left-radius: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  border-bottom-left-radius: 3px;
+  border-bottom: 3px solid #4cd59c;
+}
+/* line 149, ../sass/layout.scss */
+.animals .animal .info {
+  padding: 7px 20px 0 0px;
+}
+/* line 152, ../sass/layout.scss */
+.animals .animal .info h4 {
+  color: #787878;
+  border-bottom: 1px dashed #d4d4d4;
+}
+/* line 157, ../sass/layout.scss */
+.animals .animal .info p {
+  height: 65px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+/* line 163, ../sass/layout.scss */
+.animals .animal .info input {
+  width: 100%;
+}
+
 /* PAGE STYLES
  * ------------------------------------------------ */
 /* Add page styles here */
