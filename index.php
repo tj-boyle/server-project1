@@ -9,33 +9,57 @@
         include_once('assets/includes/header.php'); 
     ?>
 
-    <div class='container animals'>
-        <div class='eight columns animal'>
-            <div class='four columns alpha'>
-                <div class='a-image'></div>
-            </div>
-            <div class='four columns omega info'>
-                <h4>Bear</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed condimentum velit eu sollicitudin ornare. Integer sit amet odio quis tortor tincidunt suscipit et eu ligula.</p>
-                <input type='button' value='Add To Cart'>
-            </div>
+    <main role="main" class='container animals'>
+        <?php
+            include_once('credentials.php');
+            $con=mysqli_connect("127.0.0.1",$username,$password)
+                or die("couldn't connect: ".mysql_error());
+            mysqli_select_db($con, "tjb2597");
+        ?>
+        <div class='section sale'>
+            <h3 class='sixteen columns'>Sale</h3>
+            
+            <?php
+                $Query = "SELECT * FROM `stuffed-animal` WHERE `sale_price` > 0";
+                //Goes through query results
+                $v_TheResult = mysqli_query ($con, $Query); 
+                
+                while($row = mysqli_fetch_array($v_TheResult)){ ?>
+                <article class='eight columns animal'>
+                    <div class='four columns alpha a-image' style="background-image: url('<?=$row['picture']?>');"></div>
+                    <div class='four columns omega info'>
+                        <h4><?=$row["product_name"]?></h4>
+                        <span><?="Sale: $" . $row["sale_price"] . " - Orig: $" . $row['price'] . " - " . $row["quantity"] . " left"?></span>
+                        <p><?=$row["description"]?></p>
+                        <input type='button' value='ADD TO CART'>
+                    </div>
+                </article>
+            <?php } ?>
         </div>
-        <div class='eight columns animal'>
-            <div class='a-image'></div>
+        <div class='section catalog'>
+            <h3 class='sixteen columns'>Catalog</h3>
+
+            <?php
+                $Query = "SELECT * FROM `stuffed-animal` WHERE `sale_price` = 0";
+                //Goes through query results
+                $v_TheResult = mysqli_query ($con, $Query); 
+                
+                while($row = mysqli_fetch_array($v_TheResult)){ ?>
+                <article class='eight columns animal'>
+                    <div class='four columns alpha a-image'></div>
+                    <div class='four columns omega info'>
+                        <h4><?=$row["product_name"]?></h4>
+                        <span><?="$" . $row['price'] . " - " . $row["quantity"] . " left"?></span>
+                        <p><?=$row["description"]?></p>
+                        <input type='button' value='ADD TO CART'>
+                    </div>
+                </article>
+            <?php } ?>
+            
         </div>
-        <div class='eight columns animal'>
-            <div class='a-image'></div>
-        </div>
-        <div class='eight columns animal'>
-            <div class='a-image'></div>
-        </div>
-        <div class='eight columns animal'>
-            <div class='a-image'></div>
-        </div>
-        <div class='eight columns animal'>
-            <div class='a-image'></div>
-        </div>
-    </div>
+        
+        
+    </main>
     
     <?php
 

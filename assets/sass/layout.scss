@@ -45,11 +45,13 @@ li { line-height: 21px; margin-bottom: 14px;}
 
 /* BUTTONS (Baseline Corrections)
 =================================================== */
-button{
+input[type="button"]{
+    background: none;
     border: none;
     text-shadow: none !important;
 }
-button:hover{
+input[type="button"]:hover{
+    background: none;
     border: none;
     color: white;
     text-shadow: none !important;
@@ -71,18 +73,20 @@ button:hover{
     float: right;
 }
 
-button {
-    font-weight: 400;
+input[type="button"] {
+    font-weight: bold;
     @include border-radius(4px);
     color: white;
-    padding: 0 14px;
-    margin-left: 0px;
-    margin-top: 7px;
+    padding: 7px 14px;
     font-size: 14px;
+    background-color: $orange;
+    border-bottom: 3px solid $dorange;
 }
 
-button:hover {
+input[type="button"]:hover {
     // background: $orange-border;
+    background-color: #C97A2C;
+    border-bottom: 3px solid $dorange;
 }
 
 body{
@@ -127,6 +131,15 @@ header{
 .animals{
     margin-top: 28px;
 
+    h3{
+        color: white;
+        background-color: $teal;
+        padding: 7px 14px 11px 14px;
+        margin-bottom: -4px;
+        @include border-radius(4px);
+        @include text-shadow($dteal 1px 2px 0);
+    }
+
     .animal{
         margin-bottom: 30px;
         background-color: white;
@@ -136,7 +149,6 @@ header{
         @include border-radius(4px);
 
         .a-image{
-            width: 100%;
             height: 150px;
             background-image: url('http://placehold.it/350x150');
             background-size: cover;
@@ -149,20 +161,25 @@ header{
         .info{
             padding: 7px 20px 0 0px;
 
-            h4{
-                color: $dgrey; 
-                border-bottom: 1px dashed $grey;           
-            }
+        }
 
-            p{
-                height: 65px;
-                text-overflow: ellipsis;
-                overflow: hidden;
-            }
+        h4{
+            color: $dgrey; 
+            border-bottom: 1px dashed $grey;           
+        }
 
-            input{
-                width: 100%;
-            }
+        span{
+            font-weight: bold;
+        }
+        p{
+            height: 65px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            margin-bottom: 0px;
+        }
+
+        input{
+            width: 100%;
         }
     }
 
@@ -182,6 +199,13 @@ header{
 /* Smaller than standard #{strip-units($baseWidthMQ)} (devices and browsers) */
 @media only screen and (max-width: $baseWidthMQ - 1) {
 	/* add code here */
+    .animals{
+        .animal{
+            p{
+                height: 45px;
+            }
+        }
+    }
 }
 
 /* Tablet Portrait size to standard #{strip-units($baseWidthMQ)} (devices and browsers) */
