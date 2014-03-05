@@ -4,6 +4,9 @@
     <link rel="stylesheet" type="text/css" href="./assets/stylesheets/base.css"/>
     <link rel="stylesheet" type="text/css" href="./assets/stylesheets/skeleton.css"/>
     <link rel="stylesheet" type="text/css" href="./assets/stylesheets/layout.css"/>
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="assets/javascript/jPages.js"></script>
     <!--[if IE]>
       <link href="/stylesheets/ie.css" media="screen, projection" rel="stylesheet" type="text/css" />
     <![endif]-->

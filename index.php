@@ -2,7 +2,6 @@
 <html>
 
 <?php include_once('assets/includes/head.php'); ?>
-
 <body>
     <?php
         $current = "home"; 
@@ -20,16 +19,16 @@
             <h3 class='sixteen columns'>Sale</h3>
             
             <?php
-                $Query = "SELECT * FROM `stuffed-animal` WHERE `sale_price` > 0";
+                $Query = "SELECT * FROM `products` WHERE `sale_price` > 0";
                 //Goes through query results
                 $v_TheResult = mysqli_query ($con, $Query); 
                 
                 while($row = mysqli_fetch_array($v_TheResult)){ ?>
-                <article class='eight columns animal'>
+                <article class='eight columns animal' id="<?=$row['id']?>">
                     <div class='four columns alpha a-image' style="background-image: url('<?=$row['picture']?>');"></div>
                     <div class='four columns omega info'>
                         <h4><?=$row["product_name"]?></h4>
-                        <span><?="Sale: $" . $row["sale_price"] . " - Orig: $" . $row['price'] . " - " . $row["quantity"] . " left"?></span>
+                        Sale: $<span id='price'><?=$row["sale_price"]?></span> - Orig: $<span id='orig'><?=$row['price']?></span> - <span id='quantity'><?=$row["quantity"]?></span> left
                         <p><?=$row["description"]?></p>
                         <input type='button' value='ADD TO CART'>
                     </div>
@@ -38,39 +37,62 @@
         </div>
         <div class='section catalog'>
             <h3 class='sixteen columns'>Catalog</h3>
-
-            <?php
-                $Query = "SELECT * FROM `stuffed-animal` WHERE `sale_price` = 0";
-                //Goes through query results
-                $v_TheResult = mysqli_query ($con, $Query); 
-                
-                while($row = mysqli_fetch_array($v_TheResult)){ ?>
-                <article class='eight columns animal'>
-                    <div class='four columns alpha a-image'></div>
-                    <div class='four columns omega info'>
-                        <h4><?=$row["product_name"]?></h4>
-                        <span><?="$" . $row['price'] . " - " . $row["quantity"] . " left"?></span>
-                        <p><?=$row["description"]?></p>
-                        <input type='button' value='ADD TO CART'>
-                    </div>
-                </article>
-            <?php } ?>
-            
+            <div id='itemContainer'>
+                <?php
+                    $Query = "SELECT * FROM `products` WHERE `sale_price` = 0";
+                    //Goes through query results
+                    $v_TheResult = mysqli_query ($con, $Query); 
+                    
+                    while($row = mysqli_fetch_array($v_TheResult)){ ?>
+                    <article class='eight columns animal' id="<?=$row['id']?>">
+                        <div class='four columns alpha a-image' style="background-image: url('<?=$row['picture']?>');"></div>
+                        <div class='four columns omega info'>
+                            <h4><?=$row["product_name"]?></h4>
+                            $<span id='price'><?=$row['price']?></span> - <span id='quantity'><?=$row["quantity"]?></span> left
+                            <p><?=$row["description"]?></p>
+                            <input type='button' value='ADD TO CART'>
+                        </div>
+                    </article>
+                <?php } ?>
+            </div>
         </div>
-        
+        <div class="sixteen columns holder"></div>
         
     </main>
     
-    <?php
+    <script>
+        $(function(){
+            $("div.holder").jPages({
+                containerID : "itemContainer",
+                perPage: 5
+            });
+        });
+        
+        $("input[type='button']").click(function(){
 
-        // include_once('credentials.php');
-        // $con=mysql_connect("127.0.0.1",$username,$password)
-        //     or die("couldn't connect: ".mysql_error());
-        // mysql_select_db("tjb2597");
+            $this_item      = $(this).parent().parent();
+            $id             = $this_item.id;
+            $product_name   = $this_item.find("h4").html();
+            $description    = $this_item.find("p").html();
+            $price          = $this_item.find("#price").html();
 
-        // $Query = "select * from stuffed-animal";
-        // //Goes through query results
-        // $v_TheResult = mysql_query ($Query); 
-    ?>
+
+            $.ajax({
+                url: "LIB_project1.php",
+                type: "POST",
+                data: { 
+                    "Function":     "addToCart",
+                    "Product_name": $product_name,
+                    "Description":  $description,
+                    "Price":        $price
+                },
+                success: function(res){
+
+                    alert(res);
+                    //document.location = "list.php?list_id=" + res;
+                }
+            });
+        });
+    </script>
 </body>
 </html>
