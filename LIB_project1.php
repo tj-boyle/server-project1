@@ -16,6 +16,7 @@
             or die("couldn't connect: ".mysql_error());
         mysqli_select_db($con, "tjb2597");
     
+        $id             = $_POST['Id'];
         $product_name   = $_POST['Product_name'];
         $description    = $_POST['Description'];
         $price          = $_POST['Price'];
@@ -24,6 +25,8 @@
         //Goes through query results
         $v_TheResult = mysqli_query ($con, $Query); 
 
+        $Query = "UPDATE products SET quantity = quantity - 1 WHERE id = $id";
+        $v_TheResult = mysqli_query ($con, $Query); 
         echo($Query);
     }
 ?>

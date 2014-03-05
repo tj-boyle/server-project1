@@ -82,11 +82,15 @@ input[type="button"] {
     background-color: $orange;
     border-bottom: 3px solid $dorange;
 }
-
 input[type="button"]:hover {
     // background: $orange-border;
     background-color: #C97A2C;
     border-bottom: 3px solid $dorange;
+}
+input[type="button"]:disabled{
+   background: linear-gradient(0deg, rgba(120,120,120,.8), rgba(120,120,120,.8)), $orange;
+   color: $grey;
+   cursor: default;
 }
 
 a{
@@ -98,6 +102,9 @@ a{
 a.current, a.jp-current, a:hover{
     color: white;
     text-decoration: underline;
+}
+a:visited{
+    color: white;
 }
 
 body{
@@ -170,7 +177,7 @@ header{
     span{
         font-weight: bold;
     }
-    
+
     p{
         height: 65px;
         text-overflow: ellipsis;

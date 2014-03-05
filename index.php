@@ -67,31 +67,56 @@
                 perPage: 5
             });
         });
+
+        $( document ).ready(function(){
+            $animals      = $(".animal");
+
+            $animals.each(function( index ){
+                $this_item      = $( this );
+                $quantity       = $this_item.find("#quantity").html();
+                $button         = $this_item.find("input");
+
+                if($quantity == 0){
+                    $button.attr("disabled", "disabled");
+                }
+                else{
+                    //alert("Above zero!");
+                }
+            });
+        });
         
         $("input[type='button']").click(function(){
 
             $this_item      = $(this).parent().parent();
-            $id             = $this_item.id;
+            $id             = $this_item.attr("id");
             $product_name   = $this_item.find("h4").html();
             $description    = $this_item.find("p").html();
             $price          = $this_item.find("#price").html();
+            $quantity       = $this_item.find("#quantity");
+            $button         = $this_item.find("input");
 
-
-            $.ajax({
-                url: "LIB_project1.php",
-                type: "POST",
-                data: { 
-                    "Function":     "addToCart",
-                    "Product_name": $product_name,
-                    "Description":  $description,
-                    "Price":        $price
-                },
-                success: function(res){
-
-                    alert(res);
-                    //document.location = "list.php?list_id=" + res;
-                }
-            });
+            
+            if($quantity.html() == 0){
+                $button.attr("disabled", "disabled");
+            }
+            else{
+                $.ajax({
+                    url: "LIB_project1.php",
+                    type: "POST",
+                    data: { 
+                        "Function":     "addToCart",
+                        "Id":           $id,
+                        "Product_name": $product_name,
+                        "Description":  $description,
+                        "Price":        $price
+                    },
+                    success: function(res){
+                        //alert(res);
+                        $quantity.html($quantity.html()-1);
+                        //document.location = "list.php?list_id=" + res;
+                    }
+                });
+            }
         });
     </script>
 </body>
