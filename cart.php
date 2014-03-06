@@ -35,6 +35,27 @@
         <input class='sixteen columns' type='button' value='EMPTY CART'>
     </main>
 
-
+    <script>
+        $( document ).ready(function(){
+            if($(".cart").length == 0){
+                $("input").attr("disabled", "disabled");
+            }
+        });
+        $("input[type='button']").click(function(){
+            $.ajax({
+                url: "LIB_project1.php",
+                type: "POST",
+                data: { 
+                    "Function":     "deleteCart"
+                    
+                },
+                success: function(res){
+                    $(".cart").remove();
+                    $("input").attr("disabled", "disabled");
+                    //document.location = "list.php?list_id=" + res;
+                }
+            });
+        });
+    </script>
 </body>
 </html>

@@ -118,12 +118,12 @@ input[type="button"]:hover {
   float: left;
 }
 
-/* line 72, ../sass/layout.scss */
+/* line 70, ../sass/layout.scss */
 .right {
   float: right;
 }
 
-/* line 76, ../sass/layout.scss */
+/* line 72, ../sass/layout.scss */
 input[type="button"] {
   font-weight: bold;
   -webkit-border-radius: 4px;
@@ -138,20 +138,20 @@ input[type="button"] {
   border-bottom: 3px solid #995c22;
 }
 
-/* line 85, ../sass/layout.scss */
+/* line 81, ../sass/layout.scss */
 input[type="button"]:hover {
   background-color: #C97A2C;
   border-bottom: 3px solid #995c22;
 }
 
-/* line 90, ../sass/layout.scss */
+/* line 86, ../sass/layout.scss */
 input[type="button"]:disabled {
   background: linear-gradient(0deg, rgba(120, 120, 120, 0.8), rgba(120, 120, 120, 0.8)), #ff9a38;
   color: #d4d4d4;
   cursor: default;
 }
 
-/* line 96, ../sass/layout.scss */
+/* line 92, ../sass/layout.scss */
 a {
   cursor: pointer;
   color: white;
@@ -159,51 +159,51 @@ a {
   margin-left: 7px;
 }
 
-/* line 102, ../sass/layout.scss */
+/* line 98, ../sass/layout.scss */
 a.current, a.jp-current, a:hover {
   color: white;
   text-decoration: underline;
 }
 
-/* line 106, ../sass/layout.scss */
+/* line 102, ../sass/layout.scss */
 a:visited {
   color: white;
 }
 
-/* line 110, ../sass/layout.scss */
+/* line 106, ../sass/layout.scss */
 body {
   background-color: #51a6da;
 }
 
-/* line 114, ../sass/layout.scss */
+/* line 110, ../sass/layout.scss */
 header {
   background-color: #db4e4f;
   border-bottom: 3px solid #b84142;
 }
-/* line 118, ../sass/layout.scss */
+/* line 114, ../sass/layout.scss */
 header div {
   margin-top: 7px;
 }
-/* line 122, ../sass/layout.scss */
+/* line 118, ../sass/layout.scss */
 header h2 {
   color: white;
   text-shadow: #b84142 2px 2px 0;
 }
-/* line 127, ../sass/layout.scss */
+/* line 123, ../sass/layout.scss */
 header ul {
   padding-top: 14px;
 }
-/* line 131, ../sass/layout.scss */
+/* line 127, ../sass/layout.scss */
 header li {
   list-style-type: none;
   display: inline;
 }
 
-/* line 139, ../sass/layout.scss */
+/* line 135, ../sass/layout.scss */
 .animals {
   margin-top: 28px;
 }
-/* line 142, ../sass/layout.scss */
+/* line 138, ../sass/layout.scss */
 .animals h3 {
   color: white;
   background-color: #4cd59c;
@@ -216,32 +216,32 @@ header li {
   border-radius: 4px;
   text-shadow: #3ba679 1px 2px 0;
 }
-/* line 151, ../sass/layout.scss */
+/* line 147, ../sass/layout.scss */
 .animals .list {
   height: 150px;
 }
-/* line 155, ../sass/layout.scss */
+/* line 151, ../sass/layout.scss */
 .animals .cart {
   height: 91px;
   padding: 7px;
 }
-/* line 159, ../sass/layout.scss */
+/* line 155, ../sass/layout.scss */
 .animals .cart p {
   white-space: nowrap;
 }
-/* line 164, ../sass/layout.scss */
+/* line 160, ../sass/layout.scss */
 .animals .animal {
   margin-bottom: 30px;
   background-color: white;
   border-bottom: 3px solid #4cd59c;
   width: 100%;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -ms-border-radius: 4px;
-  -o-border-radius: 4px;
-  border-radius: 4px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
 }
-/* line 172, ../sass/layout.scss */
+/* line 168, ../sass/layout.scss */
 .animals .a-image {
   height: 150px;
   background-size: cover;
@@ -254,31 +254,31 @@ header li {
   border-bottom-left-radius: 3px;
   border-bottom: 3px solid #4cd59c;
 }
-/* line 180, ../sass/layout.scss */
+/* line 176, ../sass/layout.scss */
 .animals .info {
   padding: 7px 20px 0 0px;
 }
-/* line 184, ../sass/layout.scss */
+/* line 180, ../sass/layout.scss */
 .animals h4 {
   color: #787878;
   border-bottom: 1px dashed #d4d4d4;
 }
-/* line 189, ../sass/layout.scss */
+/* line 185, ../sass/layout.scss */
 .animals span {
   font-weight: bold;
 }
-/* line 193, ../sass/layout.scss */
+/* line 189, ../sass/layout.scss */
 .animals p {
   height: 65px;
   text-overflow: ellipsis;
   overflow: hidden;
   margin-bottom: 0px;
 }
-/* line 200, ../sass/layout.scss */
+/* line 196, ../sass/layout.scss */
 .animals input {
   width: 100%;
 }
-/* line 204, ../sass/layout.scss */
+/* line 200, ../sass/layout.scss */
 .animals .holder {
   background-color: #db4e4f;
 }
@@ -296,7 +296,7 @@ header li {
 /* Smaller than standard 960 (devices and browsers) */
 @media only screen and (max-width: 959px) {
   /* add code here */
-  /* line 225, ../sass/layout.scss */
+  /* line 221, ../sass/layout.scss */
   .animals .animal p {
     height: 45px;
   }

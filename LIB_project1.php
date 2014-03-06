@@ -7,6 +7,9 @@
             case "addToCart":
                 addToCart();
                 break; 
+            case "deleteCart":
+                deleteCart();
+                break;
         }
     }
 
@@ -27,6 +30,19 @@
 
         $Query = "UPDATE products SET quantity = quantity - 1 WHERE id = $id";
         $v_TheResult = mysqli_query ($con, $Query); 
+        echo($Query);
+    }
+
+    function deleteCart(){
+        include_once('credentials.php');
+        $con=mysqli_connect("127.0.0.1",$username,$password)
+            or die("couldn't connect: ".mysql_error());
+        mysqli_select_db($con, "tjb2597");
+
+        $Query = "DELETE FROM `cart`";
+        //Goes through query results
+        $v_TheResult = mysqli_query ($con, $Query);
+
         echo($Query);
     }
 ?>

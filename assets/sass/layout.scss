@@ -66,12 +66,8 @@ input[type="button"]:hover{
     @include box-sizing(border-box);
 }
 
-.left{
-    float: left;
-}
-.right{
-    float: right;
-}
+.left{ float: left;}
+.right{ float: right;}
 
 input[type="button"] {
     font-weight: bold;
@@ -166,7 +162,7 @@ header{
         background-color: white;
         border-bottom: 3px solid $teal;
         width: 100%;
-        @include border-radius(4px);
+        @include border-radius(3px);
     }
 
     .a-image{
