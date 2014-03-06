@@ -15,27 +15,21 @@
                 or die("couldn't connect: ".mysql_error());
             mysqli_select_db($con, "tjb2597");
         ?>
-        <div class='section sale'>
+        <section>
             <h3 class='sixteen columns'>Sale</h3>
-            
             <?php
                 $Query = "SELECT * FROM `products` WHERE `sale_price` > 0";
                 //Goes through query results
                 $v_TheResult = mysqli_query ($con, $Query); 
                 
-                while($row = mysqli_fetch_array($v_TheResult)){ ?>
-                <article class='eight columns animal' id="<?=$row['id']?>">
-                    <div class='four columns alpha a-image' style="background-image: url('<?=$row['picture']?>');"></div>
-                    <div class='four columns omega info'>
-                        <h4><?=$row["product_name"]?></h4>
-                        Sale: $<span id='price'><?=$row["sale_price"]?></span> - Orig: $<span id='orig'><?=$row['price']?></span> - <span id='quantity'><?=$row["quantity"]?></span> left
-                        <p><?=$row["description"]?></p>
-                        <input type='button' value='ADD TO CART'>
-                    </div>
-                </article>
-            <?php } ?>
-        </div>
-        <div class='section catalog'>
+                while($row = mysqli_fetch_array($v_TheResult)){ 
+                    
+                    include("assets/includes/animal.php");
+
+                }
+            ?>
+        </section>
+        <section>
             <h3 class='sixteen columns'>Catalog</h3>
             <div id='itemContainer'>
                 <?php
@@ -43,19 +37,14 @@
                     //Goes through query results
                     $v_TheResult = mysqli_query ($con, $Query); 
                     
-                    while($row = mysqli_fetch_array($v_TheResult)){ ?>
-                    <article class='eight columns animal' id="<?=$row['id']?>">
-                        <div class='four columns alpha a-image' style="background-image: url('<?=$row['picture']?>');"></div>
-                        <div class='four columns omega info'>
-                            <h4><?=$row["product_name"]?></h4>
-                            $<span id='price'><?=$row['price']?></span> - <span id='quantity'><?=$row["quantity"]?></span> left
-                            <p><?=$row["description"]?></p>
-                            <input type='button' value='ADD TO CART'>
-                        </div>
-                    </article>
-                <?php } ?>
+                    while($row = mysqli_fetch_array($v_TheResult)){ 
+
+                        include("assets/includes/animal.php");
+
+                    }
+                ?>
             </div>
-        </div>
+        </section>
         <div class="sixteen columns holder"></div>
         
     </main>
