@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <?php include_once('assets/includes/head.php'); ?>
 <body>
     <?php
@@ -41,6 +40,7 @@
                 $("input").attr("disabled", "disabled");
             }
         });
+        
         $("input[type='button']").click(function(){
             $.ajax({
                 url: "LIB_project1.php",

@@ -4,3 +4,6 @@
 //
 
 // @function myFunction() { }
+@function em($px, $base: 16) {
+    @return ($px / $base) + em;
+}
