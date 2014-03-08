@@ -127,10 +127,8 @@ header{
 
     li{
         list-style-type: none;
-        display: inline;
-        
+        display: inline;  
     }
-
 }
 
 .animals{
@@ -158,48 +156,68 @@ header{
         }
     }
 
+    .admin{
+        input[type='button']{
+            padding-left: 0;
+            padding-right: 0;
+            width: 48%;
+            display: inline;
+        }
+        input[type='button'].delete{
+            background-color: $red;
+        }
+        input[type='button'].delete:hover{
+            background-color: $dred;
+        }
+
+        .a-image input{
+            position: relative;
+            top: 40%;
+        }
+    }
+
     .animal{
         margin-bottom: 30px;
         background-color: white;
         border-bottom: 3px solid $teal;
         width: 100%;
         @include border-radius(3px);
-    }
 
-    .a-image{
-        height: 150px;
-        background-size: cover;
-        background-position: 50%;
-        @include border-left-radius(3px);
-        border-bottom: 3px solid $teal;
-    }
+        .a-image{
+            height: 150px;
+            background-size: cover;
+            background-position: 50%;
+            @include border-left-radius(3px);
+            border-bottom: 3px solid $teal;
+        }
 
-    .info{
-        padding: 7px 20px 0 0px;
-    }
+        .info{
+            padding: 7px 20px 0 0px;
+        }
 
-    h4{
-        color: $dgrey; 
-        border-bottom: 1px dashed $grey;           
-    }
+        h4{
+            color: $dgrey; 
+            border-bottom: 1px dashed $grey;           
+        }
 
-    span{
-        font-weight: bold;
-    }
+        span{
+            font-weight: bold;
+        }
 
-    p{
-        height: 65px;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        margin-bottom: 0px;
-    }
+        p{
+            height: 65px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            margin-bottom: 0px;
+        }
 
-    input{
-        width: 100%;
-    }
+        input{
+            width: 100%;
+        }
 
-    .holder{
-        background-color: $red; 
+        .holder{
+            background-color: $red; 
+        }
     }
 }
 /* PAGE STYLES

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <?php include_once('assets/includes/head.php'); ?>
 <body>
     <?php
@@ -23,7 +22,6 @@
                 $v_TheResult = mysqli_query ($con, $Query); 
                 
                 while($row = mysqli_fetch_array($v_TheResult)){ 
-                    
                     include("assets/includes/animal.php");
 
                 }
@@ -44,8 +42,8 @@
                     }
                 ?>
             </div>
+            <div class="sixteen columns holder"></div>
         </section>
-        <div class="sixteen columns holder"></div>
         
     </main>
     

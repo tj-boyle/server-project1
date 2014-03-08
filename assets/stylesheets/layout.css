@@ -199,11 +199,11 @@ header li {
   display: inline;
 }
 
-/* line 136, ../sass/layout.scss */
+/* line 134, ../sass/layout.scss */
 .animals {
   margin-top: 28px;
 }
-/* line 139, ../sass/layout.scss */
+/* line 137, ../sass/layout.scss */
 .animals h3 {
   color: white;
   background-color: #4cd59c;
@@ -216,20 +216,40 @@ header li {
   border-radius: 4px;
   text-shadow: #3ba679 1px 2px 0;
 }
-/* line 148, ../sass/layout.scss */
+/* line 146, ../sass/layout.scss */
 .animals .list {
   height: 150px;
 }
-/* line 152, ../sass/layout.scss */
+/* line 150, ../sass/layout.scss */
 .animals .cart {
   height: 91px;
   padding: 7px;
 }
-/* line 156, ../sass/layout.scss */
+/* line 154, ../sass/layout.scss */
 .animals .cart p {
   white-space: nowrap;
 }
-/* line 161, ../sass/layout.scss */
+/* line 160, ../sass/layout.scss */
+.animals .admin input[type='button'] {
+  padding-left: 0;
+  padding-right: 0;
+  width: 48%;
+  display: inline;
+}
+/* line 166, ../sass/layout.scss */
+.animals .admin input[type='button'].delete {
+  background-color: #db4e4f;
+}
+/* line 169, ../sass/layout.scss */
+.animals .admin input[type='button'].delete:hover {
+  background-color: #b84142;
+}
+/* line 173, ../sass/layout.scss */
+.animals .admin .a-image input {
+  position: relative;
+  top: 40%;
+}
+/* line 179, ../sass/layout.scss */
 .animals .animal {
   margin-bottom: 30px;
   background-color: white;
@@ -241,8 +261,8 @@ header li {
   -o-border-radius: 3px;
   border-radius: 3px;
 }
-/* line 169, ../sass/layout.scss */
-.animals .a-image {
+/* line 186, ../sass/layout.scss */
+.animals .animal .a-image {
   height: 150px;
   background-size: cover;
   background-position: 50%;
@@ -254,32 +274,32 @@ header li {
   border-bottom-left-radius: 3px;
   border-bottom: 3px solid #4cd59c;
 }
-/* line 177, ../sass/layout.scss */
-.animals .info {
+/* line 194, ../sass/layout.scss */
+.animals .animal .info {
   padding: 7px 20px 0 0px;
 }
-/* line 181, ../sass/layout.scss */
-.animals h4 {
+/* line 198, ../sass/layout.scss */
+.animals .animal h4 {
   color: #787878;
   border-bottom: 1px dashed #d4d4d4;
 }
-/* line 186, ../sass/layout.scss */
-.animals span {
+/* line 203, ../sass/layout.scss */
+.animals .animal span {
   font-weight: bold;
 }
-/* line 190, ../sass/layout.scss */
-.animals p {
+/* line 207, ../sass/layout.scss */
+.animals .animal p {
   height: 65px;
   text-overflow: ellipsis;
   overflow: hidden;
   margin-bottom: 0px;
 }
-/* line 197, ../sass/layout.scss */
-.animals input {
+/* line 214, ../sass/layout.scss */
+.animals .animal input {
   width: 100%;
 }
-/* line 201, ../sass/layout.scss */
-.animals .holder {
+/* line 218, ../sass/layout.scss */
+.animals .animal .holder {
   background-color: #db4e4f;
 }
 
@@ -296,7 +316,7 @@ header li {
 /* Smaller than standard 960 (devices and browsers) */
 @media only screen and (max-width: 959px) {
   /* add code here */
-  /* line 222, ../sass/layout.scss */
+  /* line 240, ../sass/layout.scss */
   .animals .animal p {
     height: 45px;
   }

@@ -21,17 +21,14 @@
                 //Goes through query results
                 $v_TheResult = mysqli_query ($con, $Query); 
                 
-                while($row = mysqli_fetch_array($v_TheResult)){ ?> 
-                    <article class='sixteen columns animal cart' id="<?=$row['id']?>">
-                        <h4><?=$row["product_name"]?></h4>
-                        $<span id='price'><?=$row['price']?></span> - <span id='quantity'>1</span>
-                        <p><?=$row["description"]?></p>
-                    </article>
-            <?php } ?>
-            
+                while($row = mysqli_fetch_array($v_TheResult)){
+                    include("assets/includes/animal.php");
+                
+                } 
+            ?>
+            <input class='sixteen columns' type='button' value='EMPTY CART'>
         </section>
 
-        <input class='sixteen columns' type='button' value='EMPTY CART'>
     </main>
 
     <script>
@@ -40,7 +37,7 @@
                 $("input").attr("disabled", "disabled");
             }
         });
-        
+
         $("input[type='button']").click(function(){
             $.ajax({
                 url: "LIB_project1.php",
