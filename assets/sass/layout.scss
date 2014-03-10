@@ -157,22 +157,26 @@ header{
     }
 
     .admin{
-        input[type='button']{
+        .delete, .update{
             padding-left: 0;
             padding-right: 0;
             width: 48%;
             display: inline;
         }
-        input[type='button'].delete{
+        .delete{
             background-color: $red;
         }
-        input[type='button'].delete:hover{
+        .delete:hover{
             background-color: $dred;
         }
 
         .a-image input{
             position: relative;
             top: 40%;
+        }
+    
+        [contenteditable="true"]{
+            border: 1px solid $grey;
         }
     }
 
@@ -197,7 +201,9 @@ header{
 
         h4{
             color: $dgrey; 
-            border-bottom: 1px dashed $grey;           
+            border-bottom: 1px dashed $grey;    
+            white-space: nowrap;
+            overflow: hidden;       
         }
 
         span{

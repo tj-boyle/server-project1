@@ -24,15 +24,33 @@
 
 <?php elseif($current = "admin"): ?>
 
-    <article class='eight columns animal list admin' id="<?=$row['id']?>">
-        <div contenteditable='true' class='four columns alpha a-image' style="background-image: url('<?=$row['picture']?>');"><input type='text' value="<?=$row['picture']?>"></div>
-        <div class='four columns omega info'>
-            <h4 contenteditable='true'><?=$row["product_name"]?></h4>
-            Sale: $<span contenteditable='true' id='price'><?=$row["sale_price"]?></span> - Orig: $<span contenteditable='true' id='orig'><?=$row['price']?></span> - <span contenteditable='true' id='quantity'><?=$row["quantity"]?></span> left
-            <p contenteditable='true'><?=$row["description"]?></p>
-            <input type='button' value='UPDATE' class='update'>
-            <input type='button' value='DELETE' class='delete' >
-        </div>
-    </article>
+    <?php if($new == false):?>
+
+        <article class='eight columns animal list admin' id="<?=$row['id']?>">
+            <div contenteditable='true' class='four columns alpha a-image' style="background-image: url('<?=$row['picture']?>');"><input type='text' value="<?=$row['picture']?>"></div>
+            <div class='four columns omega info'>
+                <h4 contenteditable='true'><?=$row["product_name"]?></h4>
+                <div class='nums' tabindex="-1">
+                    Sale: $<span contenteditable='true' id='price'><?=$row["sale_price"]?></span> - Orig: $<span contenteditable='true' id='orig'><?=$row['price']?></span> - <span contenteditable='true' id='quantity'><?=$row["quantity"]?></span> left
+                </div>
+                <p contenteditable='true'><?=$row["description"]?></p>
+                <input type='button' value='UPDATE' class='update'>
+                <input type='button' value='DELETE' class='delete' >
+            </div>
+        </article>
+
+    <?php else: ?>
+
+        <article class='eight columns animal list admin' id="-1">
+            <div contenteditable='true' class='four columns alpha a-image' style="background-image: url('');"><input type='text' placeholder='Image url...'></div>
+            <div class='four columns omega info'>
+                <h4 contenteditable='true'>New Plushie</h4>
+                Sale: $<span contenteditable='true' id='price'>0</span> - Orig: $<span contenteditable='true' id='orig'>0</span> -<span contenteditable='true' id='quantity'>0</span>left
+                <p contenteditable='true'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <input type='button' value='ADD' class='add'>
+            </div>
+        </article>
+
+    <?php endif; ?>
 
 <?php endif; ?>

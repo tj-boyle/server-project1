@@ -1,31 +1,126 @@
 <?php
-    if(isset($_POST['Function'])){
+    
+    // $id             = "";
+    // $product_name   = "";
+    // $description    = "";
+    // $price          = "";
+    // $quantity       = "";
+    // $picture        = "";
+    // $sale_price     = "";
 
+    if(isset($_POST['Function'])){
         $func = $_POST['Function'];
         
-        switch ($func) {
-            case "addToCart":
-                addToCart();
-                break; 
-            case "deleteCart":
-                deleteCart();
-                break;
-            case "updateItem":
-                updateItem();
-                break;
-            case "deleteItem":
-                deleteItem();
-                break;
-        }
+        validPOST($func);
+
+        // switch ($func) {
+        //     case "addToCart":
+        //         addToCart();
+        //         break; 
+        //     case "deleteCart":
+        //         deleteCart();
+        //         break;
+        //     case "updateItem":
+        //         updateItem();
+        //         break;
+        //     case "deleteItem":
+        //         deleteItem();
+        //         break;
+        //     case "addItem":
+        //         addItem();
+        //         break;
+        // }
+
     }
 
     function dbConnect(){
+
         include_once('credentials.php');
         $con=mysqli_connect("127.0.0.1",$username,$password)
             or die("couldn't connect: ".mysql_error());
         mysqli_select_db($con, "tjb2597");
-
+        
         return $con;
+    }
+
+    function validPOST($func){
+        if($func == "addToCart"){
+            if(     isset($_POST['Id']) 
+                &&  isset($_POST['Product_name']) 
+                &&  isset($_POST['Description']) 
+                &&  isset($_POST['Price']) 
+                && (trim($_POST['Product_name']) != "New Plushie" 
+                ||  trim($_POST['Product_name']) != "")
+                &&  trim($_POST['Description']) != ""
+                &&  is_numeric($_POST['Price'])){
+
+                if(     $_POST['Price'] > 0
+                    &&  strlen($_POST["Product_name"]) <= 20){
+                    
+                    addToCart();
+                }
+                else{
+                    echo("NOT WITHIN NUM THRESHOLD");
+                }
+            }
+            else{
+                echo("NOT VALID");
+                     
+            }
+        }
+        if($func == "deleteCart"){
+   
+            deleteCart();
+        }
+        if($func == "updateItem" || $func == "addItem"){
+            if(     isset($_POST['Id']) 
+                &&  isset($_POST['Product_name']) 
+                &&  isset($_POST['Description']) 
+                &&  isset($_POST['Price']) 
+                &&  isset($_POST['Quantity']) 
+                &&  isset($_POST['Picture']) 
+                &&  isset($_POST['Sale_price']) 
+                && (trim($_POST['Product_name']) != "New Plushie" 
+                ||  trim($_POST['Product_name']) != "")
+                &&  trim($_POST['Description']) != ""
+                && (is_numeric($_POST['Price']) 
+                &&  is_numeric($_POST['Quantity']))
+                &&  is_numeric($_POST['Sale_price'])){
+
+                if(     $_POST['Price'] > 0
+                    &&  $_POST['Quantity'] >= 0
+                    &&  $_POST['Sale_price'] >= 0
+                    &&  $_POST['Price'] < 100
+                    &&  $_POST['Quantity'] < 100
+                    &&  $_POST['Sale_price'] < 100
+                    &&  strlen($_POST["Product_name"]) <= 20
+                    &&  strlen($_POST["Picture"]) > 0){
+
+                    if($func == "updateItem"){
+                        updateItem();
+                    }
+                    elseif($func == "addItem"){
+                        addItem();
+                    }
+                }
+                else{
+                    echo("NOT WITHIN NUM THRESHOLD");
+                }
+            }
+            else{
+     
+               echo("NOT VALID");  
+            }
+        }
+        if($func == "deleteItem"){
+            if(     isset($_POST['Id']) ){   
+                deleteItem();
+            }
+            else{
+                echo("NOT SET");
+            }
+        }
+
     }
 
     function addTocart(){
@@ -52,7 +147,6 @@
         $Query = "DELETE FROM `cart`";
         //Goes through query results
         $v_TheResult = mysqli_query ($con, $Query);
-
         echo($Query);
     }
 
@@ -71,7 +165,6 @@
         //Goes through query results
         $v_TheResult = mysqli_query ($con, $Query);
         echo($picture);
-
     }
 
     function deleteItem(){
@@ -81,7 +174,24 @@
 
         $Query = "DELETE FROM products WHERE id=$id";
         //Goes through query results
-        //$v_TheResult = mysqli_query ($con, $Query);
+        $v_TheResult = mysqli_query ($con, $Query);
         echo($id);
+    }
+
+    function addItem(){
+        $con = dbConnect();
+
+        $id             = $_POST['Id'];
+        $product_name   = $_POST['Product_name'];
+        $description    = $_POST['Description'];
+        $price          = $_POST['Price'];
+        $quantity       = $_POST['Quantity'];
+        $picture        = $_POST['Picture'];
+        $sale_price     = $_POST['Sale_price'];
+
+        $Query = "INSERT INTO products(product_name, description, price, quantity, picture, sale_price) VALUES ('" . $product_name . "', '" . $description  . "', $price, $quantity, '" . $picture . "', $sale_price)";
+        //Goes through query results
+        $v_TheResult = mysqli_query ($con, $Query);
+        echo($Query);
     }
 ?>
