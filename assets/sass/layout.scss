@@ -178,6 +178,10 @@ header{
         [contenteditable="true"]{
             border: 1px solid $grey;
         }
+
+        span{
+            border: none;
+        }
     }
 
     .animal{

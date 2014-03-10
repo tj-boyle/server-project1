@@ -253,7 +253,11 @@ header li {
 .animals .admin [contenteditable="true"] {
   border: 1px solid #d4d4d4;
 }
-/* line 183, ../sass/layout.scss */
+/* line 182, ../sass/layout.scss */
+.animals .admin span {
+  border: none;
+}
+/* line 187, ../sass/layout.scss */
 .animals .animal {
   margin-bottom: 30px;
   background-color: white;
@@ -265,7 +269,7 @@ header li {
   -o-border-radius: 3px;
   border-radius: 3px;
 }
-/* line 190, ../sass/layout.scss */
+/* line 194, ../sass/layout.scss */
 .animals .animal .a-image {
   height: 150px;
   background-size: cover;
@@ -278,33 +282,33 @@ header li {
   border-bottom-left-radius: 3px;
   border-bottom: 3px solid #4cd59c;
 }
-/* line 198, ../sass/layout.scss */
+/* line 202, ../sass/layout.scss */
 .animals .animal .info {
   padding: 7px 20px 0 0px;
 }
-/* line 202, ../sass/layout.scss */
+/* line 206, ../sass/layout.scss */
 .animals .animal h4 {
   color: #787878;
   border-bottom: 1px dashed #d4d4d4;
   white-space: nowrap;
   overflow: hidden;
 }
-/* line 209, ../sass/layout.scss */
+/* line 213, ../sass/layout.scss */
 .animals .animal span {
   font-weight: bold;
 }
-/* line 213, ../sass/layout.scss */
+/* line 217, ../sass/layout.scss */
 .animals .animal p {
   height: 65px;
   text-overflow: ellipsis;
   overflow: hidden;
   margin-bottom: 0px;
 }
-/* line 220, ../sass/layout.scss */
+/* line 224, ../sass/layout.scss */
 .animals .animal input {
   width: 100%;
 }
-/* line 224, ../sass/layout.scss */
+/* line 228, ../sass/layout.scss */
 .animals .animal .holder {
   background-color: #db4e4f;
 }
@@ -322,7 +326,7 @@ header li {
 /* Smaller than standard 960 (devices and browsers) */
 @media only screen and (max-width: 959px) {
   /* add code here */
-  /* line 246, ../sass/layout.scss */
+  /* line 250, ../sass/layout.scss */
   .animals .animal p {
     height: 45px;
   }

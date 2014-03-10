@@ -49,12 +49,12 @@
                         dbChange($this_item, false);
                     }
                     else{
-                        alert("Invalid data");
+                        //alert("Invalid data");
                     }
                 }
                 else{
                     $this_item.find(".a-image input").css("border", "1px solid red");
-                    alert("Invalid url");
+                    //alert("Invalid url");
                 }
 
             });
@@ -108,33 +108,90 @@
         }
 
         function IsValidChange(item){
-            $this_item      = $(item);
-            $id             = $this_item.attr("id");
-            $product_name   = $this_item.find("h4").html();
-            $description    = $this_item.find("p").html();
-            $price          = $this_item.find("#orig").html();
-            $quantity       = $this_item.find("#quantity").html();
-            $sale_price     = $this_item.find("#price").html();
-            $picture        = $this_item.find(".a-image input").attr("value");
+            $this_item           = $(item);
+            $id                  = $this_item.attr("id");
 
+            $h4                  = $this_item.find("h4");
+            $product_name        = $h4.html();
+            $product_name_valid  = false;
+
+            $p                   = $this_item.find("p");
+            $description         = $p.html();
+            $description_valid   = false;
+
+            $priceSpan           = $this_item.find("#orig");
+            $price               = $priceSpan.html();
+            $price_valid         = false;
+            
+            $quantitySpan        = $this_item.find("#quantity");
+            $quantity            = $quantitySpan.html();
+            $quantity_valid      = false;
+
+            $sale_priceSpan      = $this_item.find("#price");
+            $sale_price          = $sale_priceSpan.html();
+            $sale_price_valid    = false;
 
             if(     $product_name.length <= 20
-                &&  $product_name != "New Plushie"  
-                &&  $description  != ""
-                &&  $price < 100
-                &&  $price > 0
-                &&  $quantity < 100
-                &&  $quantity >= 0
-                &&  $sale_price < 100
-                &&  $sale_price >= 0
-                &&  $picture != ""
-            ){
-                return true;
+                &&  $product_name != "New Plushie"
+                &&  $product_name != ""){
+
+                $product_name_valid = true;
             }
-            else{
-                return false;
+
+            if(     $description  != "" ){
+
+                $description_valid = true;
+            }
+
+            if(     $price < 100
+                &&  $price >=  0 ){
+
+                $price_valid = true;
+            }
+
+
+            if(     $quantity < 100
+                &&  $quantity >= 0 ){
+
+                $quantity_valid = true;
+            }
+
+            if(     $sale_price < 100
+                &&  $sale_price >=  0 ){
+
+                $sale_price_valid = true;
+            }
+
+            var htmlElements = [];
+            htmlElements.push($h4);
+            htmlElements.push($p);
+            htmlElements.push($priceSpan);
+            htmlElements.push($quantitySpan);
+            htmlElements.push($sale_priceSpan);
+
+            var validity = [];
+            validity.push($product_name_valid);
+            validity.push($description_valid);
+            validity.push($price_valid);
+            validity.push($quantity_valid);
+            validity.push($sale_price_valid);
+
+            for(var index in validity){
+                if(validity[index] == false){
+                    htmlElements[index].css("border", "1px solid red");
+                }
+                else{
+                    htmlElements[index].css("border", "1px solid #D4D4D4");
+                }
+            }
+
+            for(var index in validity){
+                if(validity[index] == false){
+                    return false;
+                }
             }
             
+            return true;
             
         }
 
@@ -186,8 +243,6 @@
                 },
             });   
         }
-
-
     </script>
 </body>
 </html>
