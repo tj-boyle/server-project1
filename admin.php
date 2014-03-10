@@ -4,6 +4,7 @@
 <body>
     <?php
         $current = "admin";
+        $numSale = 0;
 
         include_once('assets/includes/header.php'); 
     ?>
@@ -24,7 +25,12 @@
                 
                 $new = false;
                 while($row = mysqli_fetch_array($v_TheResult)){ 
+
                     
+                    if($row["sale_price"] > 0){
+                        $numSale++;
+                    }
+
                     include("assets/includes/animal.php");
 
                 }
@@ -33,11 +39,22 @@
                 include("assets/includes/animal.php");
 
             ?>
-            
-
+        
         </section>
     </main>
     <script>
+        numSale = 0;
+
+        $(document).ready(function(){
+            $(".admin").each(function(){
+                $sale_price     = $(this).find("#price").html();
+                if($sale_price > 0){
+                    numSale++;
+                }
+            })
+
+            console.log(numSale);
+        });
 
         $(".update").click(function(){
             $this_item      = $(this).parent().parent();
@@ -49,12 +66,12 @@
                         dbChange($this_item, false);
                     }
                     else{
-                        //alert("Invalid data");
+                        alert("Invalid data");
                     }
                 }
                 else{
                     $this_item.find(".a-image input").css("border", "1px solid red");
-                    //alert("Invalid url");
+                    alert("Invalid url");
                 }
 
             });
@@ -62,7 +79,9 @@
 
         $(".add").click(function(){
             $this_item      = $(this).parent().parent();
-            $picture        = $this_item.find(".a-image input").attr("value");
+            $pictureInput   = $this_item.find(".a-image input")
+            $picture        = $pictureInput.attr("value");
+
             IsValidImageUrl($picture, function(result) { 
 
                 if(result){
@@ -70,11 +89,12 @@
                         dbChange($this_item, true);
                     }
                     else{
-                        alert("Invalid data");
+                        //alert("Invalid data");
                     }
                 }
                 else{
-                    alert("Invalid url");
+                    $pictureInput.css("border", "1px solid red");
+                    //alert("Invalid url");
                 }
 
             });
@@ -144,7 +164,7 @@
             }
 
             if(     $price < 100
-                &&  $price >=  0 ){
+                &&  $price >  0 ){
 
                 $price_valid = true;
             }
@@ -156,9 +176,16 @@
                 $quantity_valid = true;
             }
 
-            if(     $sale_price < 100
-                &&  $sale_price >=  0 ){
+            if(     $sale_price == 0){
+                $sale_price_valid = true;
+            }
 
+            if(     $sale_price > 0
+                &&  $sale_price < 100
+                &&  numSale < 5){
+
+                numSale++;
+                console.log(numSale);
                 $sale_price_valid = true;
             }
 
@@ -191,8 +218,7 @@
                 }
             }
             
-            return true;
-            
+            return true;           
         }
 
         function dbChange(item, newItem){
@@ -243,6 +269,7 @@
                 },
             });   
         }
+
     </script>
 </body>
 </html>

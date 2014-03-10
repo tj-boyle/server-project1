@@ -1,35 +1,8 @@
 <?php
-    
-    // $id             = "";
-    // $product_name   = "";
-    // $description    = "";
-    // $price          = "";
-    // $quantity       = "";
-    // $picture        = "";
-    // $sale_price     = "";
-
     if(isset($_POST['Function'])){
         $func = $_POST['Function'];
         
         validPOST($func);
-
-        // switch ($func) {
-        //     case "addToCart":
-        //         addToCart();
-        //         break; 
-        //     case "deleteCart":
-        //         deleteCart();
-        //         break;
-        //     case "updateItem":
-        //         updateItem();
-        //         break;
-        //     case "deleteItem":
-        //         deleteItem();
-        //         break;
-        //     case "addItem":
-        //         addItem();
-        //         break;
-        // }
 
     }
 
@@ -131,14 +104,17 @@
         $description    = $_POST['Description'];
         $price          = $_POST['Price'];
 
-        $Query = 'INSERT INTO cart(product_name, description, price) VALUES ("' . $product_name . '", "' . $description  . '" , "' . $price . '")';
+        //$Query = 'INSERT INTO cart(product_name, description, price) VALUES ("' . $product_name . '", "' . $description  . '" , "' . $price . '")';
+        $Query = $con->prepare("INSERT INTO cart(product_name, description, price) VALUES (?,?,?)");
+        $Query->bind_param('ssi', $product_name, $description, $price);
         //Goes through query results
-        $v_TheResult = mysqli_query ($con, $Query); 
+        $Query->execute(); 
 
-        $Query = "UPDATE products SET quantity = quantity - 1 WHERE id = $id";
-        $v_TheResult = mysqli_query ($con, $Query); 
+        $Query = $con->prepare("UPDATE products SET quantity = quantity - 1 WHERE id = ?");
+        $Query->bind_param('i', $id);
+        $Query->execute();
         
-        echo($Query);
+        echo($Query->fetch());
     }
 
     function deleteCart(){
@@ -161,10 +137,13 @@
         $picture        = $_POST['Picture'];
         $sale_price     = $_POST['Sale_price'];
 
-        $Query = "UPDATE products SET product_name='$product_name', description='$description', price=$price, quantity=$quantity, picture='$picture', sale_price=$sale_price WHERE id=$id";
-        //Goes through query results
-        $v_TheResult = mysqli_query ($con, $Query);
-        echo($picture);
+        //$Query = "UPDATE products SET product_name='$product_name', description='$description', price=$price, quantity=$quantity, picture='$picture', sale_price=$sale_price WHERE id=$id";
+
+        $Query = $con->prepare("UPDATE products SET product_name = ?, description = ?, price = ?, quantity = ?, picture = ?, sale_price = ? WHERE id = ?");
+        $Query->bind_param('ssiisii', $product_name, $description, $price, $quantity, $picture, $sale_price, $id);
+        $Query->execute();
+
+        echo($Query);
     }
 
     function deleteItem(){
@@ -172,9 +151,9 @@
 
         $id             = $_POST['Id'];
 
-        $Query = "DELETE FROM products WHERE id=$id";
-        //Goes through query results
-        $v_TheResult = mysqli_query ($con, $Query);
+        $Query = $con->prepare("DELETE FROM products WHERE id=?");
+        $Query->bind_param('i', $id);
+        $Query->execute();
         echo($id);
     }
 
@@ -189,9 +168,9 @@
         $picture        = $_POST['Picture'];
         $sale_price     = $_POST['Sale_price'];
 
-        $Query = "INSERT INTO products(product_name, description, price, quantity, picture, sale_price) VALUES ('" . $product_name . "', '" . $description  . "', $price, $quantity, '" . $picture . "', $sale_price)";
-        //Goes through query results
-        $v_TheResult = mysqli_query ($con, $Query);
+        $Query = $con->prepare("INSERT INTO products(product_name, description, price, quantity, picture, sale_price) VALUES (?, ?, ?, ?, ?, ?)");
+        $Query->bind_param('ssiisi', $product_name, $description, $price, $quantity, $picture, $sale_price);
+        $Query->execute();
         echo($Query);
     }
 ?>
