@@ -5,9 +5,9 @@
 ...
 + Enable password protection for admin page
 + Better validation alerts
-⋅⋅* Sale Items
-⋅⋅* Disable less than 3 sale items
-⋅⋅* Allow for removing item and adding item to sale without refresh
+  * Sale Items
+  * Disable less than 3 sale items
+  * Allow for removing item and adding item to sale without refresh
 + Lazy Loading?
 + Go over logic
 ⋅⋅* Refactor
