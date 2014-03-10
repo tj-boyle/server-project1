@@ -98,7 +98,7 @@
                         "Price":        $price
                     },
                     success: function(res){
-                        //alert(res);
+                        alert(res);
                         $quantity.html($quantity.html()-1);
                         //document.location = "list.php?list_id=" + res;
                     }

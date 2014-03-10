@@ -1,9 +1,10 @@
 <?php
-    if(isset($_POST['Function'])){
-        $func = $_POST['Function'];
-        
-        validPOST($func);
+    if (isset($_POST['Function'])) {
 
+        session_start();
+
+        $func = $_POST['Function'];
+        validPOST($func);
     }
 
     function dbConnect(){
@@ -17,83 +18,81 @@
     }
 
     function validPOST($func){
-        if($func == "addToCart"){
-            if(     isset($_POST['Id']) 
-                &&  isset($_POST['Product_name']) 
-                &&  isset($_POST['Description']) 
-                &&  isset($_POST['Price']) 
-                && (trim($_POST['Product_name']) != "New Plushie" 
-                ||  trim($_POST['Product_name']) != "")
-                &&  trim($_POST['Description']) != ""
-                &&  is_numeric($_POST['Price'])){
 
-                if(     $_POST['Price'] > 0
-                    &&  strlen($_POST["Product_name"]) <= 20){
-                    
-                    addToCart();
-                }
-                else{
-                    echo("NOT WITHIN NUM THRESHOLD");
-                }
+        $validID    =   isset($_POST['Id']);
+        
+        $validProd  =   isset($_POST['Product_name']) 
+                    &&  trim($_POST['Product_name']) != "New Plushie" 
+                    &&  trim($_POST['Product_name']) != ""
+                    &&  strlen($_POST["Product_name"]) <= 20;
+        
+        $validDesc  =   isset($_POST['Description'])
+                    &&  trim($_POST['Description']) != "";
+
+        $validPrice =   isset($_POST['Price']) 
+                    &&  is_numeric($_POST['Price'])
+                    &&  $_POST['Price'] > 0
+                    &&  $_POST['Price'] < 100;
+
+        $validQuant =   isset($_POST['Quantity'])
+                    &&  is_numeric($_POST['Quantity'])
+                    &&  $_POST['Quantity'] >= 0
+                    &&  $_POST['Quantity'] < 100;
+
+        $validSale  =   isset($_POST['Sale_price'])
+                    &&  $_POST['Sale_price'] >= 0
+                    &&  $_POST['Sale_price'] < 100;
+
+        $validPic   =   isset($_POST['Picture']);
+
+        $validALL   =   $validID 
+                    &&  $validProd 
+                    &&  $validDesc 
+                    &&  $validPrice 
+                    &&  $validQuant 
+                    &&  $validSale 
+                    &&  $validPic;
+
+
+        if ($func == "addToCart") {      
+
+            if ($validID && $validProd && $validDesc && $validPrice) {
+                addToCart();
             }
             else{
-                echo("NOT VALID");
-                     
+                echo("Invalid");
             }
         }
-        if($func == "deleteCart"){
-   
+
+        if ($func == "deleteCart") {
             deleteCart();
         }
-        if($func == "updateItem" || $func == "addItem"){
-            if(     isset($_POST['Id']) 
-                &&  isset($_POST['Product_name']) 
-                &&  isset($_POST['Description']) 
-                &&  isset($_POST['Price']) 
-                &&  isset($_POST['Quantity']) 
-                &&  isset($_POST['Picture']) 
-                &&  isset($_POST['Sale_price']) 
-                && (trim($_POST['Product_name']) != "New Plushie" 
-                ||  trim($_POST['Product_name']) != "")
-                &&  trim($_POST['Description']) != ""
-                && (is_numeric($_POST['Price']) 
-                &&  is_numeric($_POST['Quantity']))
-                &&  is_numeric($_POST['Sale_price'])){
 
-                if(     $_POST['Price'] > 0
-                    &&  $_POST['Quantity'] >= 0
-                    &&  $_POST['Sale_price'] >= 0
-                    &&  $_POST['Price'] < 100
-                    &&  $_POST['Quantity'] < 100
-                    &&  $_POST['Sale_price'] < 100
-                    &&  strlen($_POST["Product_name"]) <= 20
-                    &&  strlen($_POST["Picture"]) > 0){
+        if ($func == "updateItem" || $func == "addItem") {
 
-                    if($func == "updateItem"){
-                        updateItem();
-                    }
-                    elseif($func == "addItem"){
-                        addItem();
-                    }
+            if ($validALL) {
+
+                if ($func == "updateItem") {
+                    updateItem();
                 }
-                else{
-                    echo("NOT WITHIN NUM THRESHOLD");
+                elseif ($func == "addItem") {
+                    addItem();
                 }
             }
             else{
-     
-               echo("NOT VALID");  
+                echo("Invalid");
             }
         }
-        if($func == "deleteItem"){
-            if(     isset($_POST['Id']) ){   
+
+        if ($func == "deleteItem") {
+            
+            if ($validID) {   
                 deleteItem();
             }
             else{
-                echo("NOT SET");
+                echo("Invalid");
             }
         }
-
     }
 
     function addTocart(){
