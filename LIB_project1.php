@@ -1,19 +1,13 @@
 <?php
     if (isset($_POST['Function'])) {
 
-        session_start();
-
         $func = $_POST['Function'];
         validPOST($func);
     }
 
     function dbConnect(){
 
-        include_once('credentials.php');
-        $con=mysqli_connect("127.0.0.1",$username,$password)
-            or die("couldn't connect: ".mysql_error());
-        mysqli_select_db($con, "tjb2597");
-        
+        include_once("assets/includes/connect.php");
         return $con;
     }
 
@@ -102,10 +96,19 @@
         $product_name   = $_POST['Product_name'];
         $description    = $_POST['Description'];
         $price          = $_POST['Price'];
+        $username       = $_SESSION['UserName'];
 
+        $Query = $con->prepare("SELECT UID FROM users WHERE UserName = ?");
+        $Query->bind_param('s', $username);
+        $Query->execute();
+        $res = $Query->get_result();
+        $row = $res->fetch_assoc();
+        $UID            = $row['UID'];
+        
+        //echo($UID . " ");
         //$Query = 'INSERT INTO cart(product_name, description, price) VALUES ("' . $product_name . '", "' . $description  . '" , "' . $price . '")';
-        $Query = $con->prepare("INSERT INTO cart(product_name, description, price) VALUES (?,?,?)");
-        $Query->bind_param('ssi', $product_name, $description, $price);
+        $Query = $con->prepare("INSERT INTO cart(product_name, description, price, UID) VALUES (?,?,?,?)");
+        $Query->bind_param('ssii', $product_name, $description, $price, $UID);
         //Goes through query results
         $Query->execute(); 
 
@@ -113,7 +116,7 @@
         $Query->bind_param('i', $id);
         $Query->execute();
         
-        echo($Query->fetch());
+        echo($UID);
     }
 
     function deleteCart(){

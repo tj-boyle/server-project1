@@ -46,12 +46,12 @@ li { line-height: 21px; margin-bottom: 14px;}
 
 /* BUTTONS (Baseline Corrections)
 =================================================== */
-input[type="button"]{
+input[type="button"],input[type="submit"]{
     background: none;
     border: none;
     text-shadow: none !important;
 }
-input[type="button"]:hover{
+input[type="button"]:hover,input[type="submit"]:hover{
     background: none;
     border: none;
     color: white;
@@ -70,7 +70,7 @@ input[type="button"]:hover{
 .left{ float: left;}
 .right{ float: right;}
 
-input[type="button"] {
+input[type="button"],input[type="submit"] {
     font-weight: bold;
     @include border-radius(4px);
     color: white;
@@ -79,7 +79,7 @@ input[type="button"] {
     background-color: $orange;
     border-bottom: 3px solid $dorange;
 }
-input[type="button"]:hover {
+input[type="button"]:hover,input[type="submit"]:hover {
     // background: $orange-border;
     background-color: #C97A2C;
     border-bottom: 3px solid $dorange;
@@ -141,6 +141,25 @@ header{
         margin-bottom: -4px;
         @include border-radius(4px);
         @include text-shadow($dteal 1px 2px 0);
+    }
+
+    .register{
+        box-sizing: initial;
+        margin-top: 28px;
+        
+        form{
+            background-color: white;
+            @include border-radius(4px);
+            padding: 7px 14px;
+
+            input{
+                margin: auto;
+                width: 100%;
+            }
+            input[type="button"]{
+                text-align: center;
+            }
+        }
     }
 
     .list{

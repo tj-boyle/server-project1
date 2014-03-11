@@ -10,7 +10,10 @@
                 Sale: $<span id='price'><?=$row["sale_price"]?></span> - Orig: $<span id='orig'><?=$row['price']?></span> - <span id='quantity'><?=$row["quantity"]?></span> left
             <?php endif; ?>
             <p><?=$row["description"]?></p>
-            <input type='button' value='ADD TO CART'>
+            <?php if (!empty($_SESSION['LoggedIn']) && !empty($_SESSION['UserName'])) { ?>
+                <input type='button' value='ADD TO CART'>
+
+            <?php } ?>
         </div>
     </article>
 

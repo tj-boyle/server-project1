@@ -1,3 +1,4 @@
+<?php include("assets/includes/connect.php") ?>
 <!DOCTYPE html>
 <html>
 <?php include_once('assets/includes/head.php'); ?>
@@ -8,12 +9,7 @@
     ?>
 
     <main role="main" class='container animals'>
-        <?php
-            include_once('credentials.php');
-            $con=mysqli_connect("127.0.0.1",$username,$password)
-                or die("couldn't connect: ".mysql_error());
-            mysqli_select_db($con, "tjb2597");
-        ?>
+
         <section>
             <h3 class='sixteen columns'>Sale</h3>
             <?php
@@ -98,7 +94,7 @@
                         "Price":        $price
                     },
                     success: function(res){
-                        alert(res);
+                        //alert(res);
                         $quantity.html($quantity.html()-1);
                         //document.location = "list.php?list_id=" + res;
                     }
