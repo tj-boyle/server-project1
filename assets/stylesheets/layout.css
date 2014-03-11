@@ -217,12 +217,12 @@ header li {
   text-shadow: #3ba679 1px 2px 0;
 }
 /* line 146, ../sass/layout.scss */
-.animals .register {
+.animals .form {
   box-sizing: initial;
   margin-top: 28px;
 }
 /* line 150, ../sass/layout.scss */
-.animals .register form {
+.animals .form form {
   background-color: white;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -232,12 +232,12 @@ header li {
   padding: 7px 14px;
 }
 /* line 155, ../sass/layout.scss */
-.animals .register form input {
+.animals .form form input {
   margin: auto;
   width: 100%;
 }
 /* line 159, ../sass/layout.scss */
-.animals .register form input[type="button"] {
+.animals .form form input[type="button"] {
   text-align: center;
 }
 /* line 165, ../sass/layout.scss */

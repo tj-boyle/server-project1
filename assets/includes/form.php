@@ -1,4 +1,4 @@
-<div class='six columns offset-by-five register' >
+<div class='six columns offset-by-five form' >
     <?php 
         if ($formtype == "reg") {
             echo "<form method='post' action='register.php' name='registerform' id='registerform'>";
@@ -26,6 +26,8 @@
             case "not_found":
                 echo "<h4>Error</h4>";
                 echo "<p>Sorry, your your account could not be found. Please try again.</p>";
+                break;
+
         }
     ?>
     <?php if ($formtype == "reg") { ?>

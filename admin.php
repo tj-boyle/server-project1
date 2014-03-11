@@ -1,4 +1,4 @@
-<?php include("assets/includes/connect.php") ?>
+<?php include("assets/includes/connect.php"); ?>
 <!DOCTYPE html>
 <html>
 <?php include_once('assets/includes/head.php'); ?>
@@ -6,16 +6,36 @@
     <?php
         $current = "admin";
         $numSale = 0;
+        
+        if (!empty($_SESSION['LoggedIn']) && !empty($_SESSION['UserName'])){
+            $username       = $_SESSION['UserName'];
+
+            $Query = $con->prepare("SELECT Type FROM users WHERE UserName = ?");
+            $Query->bind_param('s', $username);
+            $Query->execute();
+            $res = $Query->get_result();
+            $row = $res->fetch_assoc();
+            $type            = $row['Type'];
+        }
+        
         include_once('assets/includes/header.php'); 
     ?>
 
     <main role="main" class='container animals'>
+        <section>
+        <h3 class='sixteen columns'>Admin Panel</h3>
+        <?php 
+            if (!empty($_SESSION['LoggedIn']) && !empty($_SESSION['UserName'])) { 
+                $username       = $_SESSION['UserName'];
 
-        <?php if (!empty($_SESSION['LoggedIn']) && !empty($_SESSION['UserName'])){ ?>
-           <section>
-                <h3 class='sixteen columns'>Admin Panel</h3>
+                // $Query = $con->prepare("SELECT Type FROM users WHERE UserName = ?");
+                // $Query->bind_param('s', $username);
+                // $Query->execute();
+                // $res = $Query->get_result();
+                // $row = $res->fetch_assoc();
+                // $type            = $row['Type'];
 
-                <?php
+                if($type == 1){
                     $Query = "SELECT * FROM `products`";
                     //Goes through query results
                     $v_TheResult = mysqli_query ($con, $Query); 
@@ -32,46 +52,22 @@
 
                     $new = true;
                     include("assets/includes/animal.php");
-                ?>
-            </section>
-        <?php } elseif (!empty($_POST['username']) && !empty($_POST['password'])) { 
-            // Check user login
-            $username = mysqli_real_escape_string($con, $_POST['username']);
-            $password = md5(mysqli_real_escape_string($con, $_POST['password']));
-
-            $Query = "SELECT * FROM users WHERE UserName = '" . $username  . "' AND Password = '" . $password ."'";
-            $checkLogin = mysqli_query($con, $Query);
-
-            if (mysqli_num_rows($checkLogin) == 1) {
-                $row = mysqli_fetch_array($checkLogin);
-                $email = $row['Email'];
-               
-                $_SESSION['UserName'] = $username;
-                $_SESSION['Email'] = $email;
-                $_SESSION['LoggedIn'] = 1;
-
-                echo "<h1>Success</h1>";
-                echo "<p>We are now redirecting you to the member area.</p>";
-                echo "<meta http-equiv='refresh' content='2;URL=admin.php' />";
+                }
+                else { 
+                    echo("<div class='six columns offset-by-five form'>");
+                    echo("<h4 >Error: Not authorized</h4>");
+                    echo("</div>");
+                }
             }
-            else {
-                echo "<h1>Error</h1>";
-                echo "<p>Sorry, your account could not be found."; 
+
+            else{
+                echo("<div class='six columns offset-by-five form'>");
+                echo("<h4 >Error: Not authorized</h4>");
+                echo("</div>");
             }
         ?>
 
-        <?php } else { ?>
-            <!-- Let user login -->
-            <h3 class='sixteen columns'>Admin Login</h3>
-            <p class='sixteen columns'>Thanks for visiting! Please either login below, or <a href="register.php">click here to register</a>.</p>
-            <form class='six columns offset-by-five' method="post" action="admin.php" name="loginform" id="loginform">
-            <fieldset>
-                <label for="username">Username:</label><input type="text" name="username" id="username" /><br />
-                <label for="password">Password:</label><input type="password" name="password" id="password" /><br />
-                <input type="submit" name="login" id="login" value="Login" />
-            </fieldset>
-            </form>
-        <?php } ?>
+        </section>
     </main>
 
     <script>
@@ -286,7 +282,7 @@
                     "Sale_price":   $sale_price,
                 },
                 success: function(res){
-                    alert(res);
+                    //alert(res);
                     
                     if(newItem == false){
                         $this_item.find(".a-image").css('background-image', 'url(' + res + ')');

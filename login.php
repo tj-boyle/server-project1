@@ -5,6 +5,18 @@
 <body>
     <?php
         $current = "login";
+
+        if (!empty($_SESSION['LoggedIn']) && !empty($_SESSION['UserName'])){
+            $username       = $_SESSION['UserName'];
+
+            $Query = $con->prepare("SELECT Type FROM users WHERE UserName = ?");
+            $Query->bind_param('s', $username);
+            $Query->execute();
+            $res = $Query->get_result();
+            $row = $res->fetch_assoc();
+            $type            = $row['Type'];
+        }
+        
         include_once('assets/includes/header.php'); 
     ?>
 
