@@ -30,23 +30,20 @@
 
         }
     ?>
-    <?php if ($formtype == "reg") { ?>
-        <fieldset>
-            <label for="username">Username:</label>
-            <input type="text" name="username" id="username" /><br />
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password" /><br />
+    <fieldset>
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" /><br />
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" /><br />
+        
+        <?php if ($formtype == "reg") { ?>
             <label for="email">Email Address:</label>
             <input type="text" name="email" id="email" /><br />
             <input type="submit" name="register" id="register" value="Register" />
-        </fieldset>
-    <?php } elseif ($formtype == "login") { ?>
-        <fieldset>
-            <label for="username">Username:</label>
-            <input type="text" name="username" id="username" /><br />
-            <label for="password">Password:</label>
-            <input type="password" name="password" id="password" /><br />
+        
+        <?php } elseif ($formtype == "login") { ?>
             <input type="submit" name="login" id="login" value="Login" />
-        </fieldset>
-    <?php } ?>
+        
+        <?php } ?>
+    </fieldset>
 </div>

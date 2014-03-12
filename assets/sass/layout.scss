@@ -122,17 +122,32 @@ header{
     }
 
     ul{
-        padding-top: 14px;
+        padding-top: 7px;
     }
 
     li{
         list-style-type: none;
-        display: inline;  
+        display: inline;
+    }
+
+    a{
+        padding: 4px 7px;  
+        display: inline-block;
+
+    }
+
+    .account{
+        background-color: $teal;
+        @include border-radius(4px);
+        border-bottom: 3px solid $dteal;
+    }  
+    .account:hover{
+        background-color: $dteal;
     }
 }
 
-.animals{
-    margin-top: 28px;
+main{
+    margin-top: 28px !important;
 
     h3{
         color: white;
@@ -162,10 +177,6 @@ header{
         }
     }
 
-    .list{
-         height: 150px;
-    }
-
     .cart{
         height: 91px;
         padding: 7px;
@@ -176,6 +187,7 @@ header{
     }
 
     article{
+        height: 150px;
         margin-bottom: 30px;
         background-color: white;
         border-bottom: 3px solid $teal;
@@ -259,7 +271,25 @@ header{
 /* Smaller than standard #{strip-units($baseWidthMQ)} (devices and browsers) */
 @media only screen and (max-width: $baseWidthMQ - 1) {
 	/* add code here */
-    .animals{
+    header{
+        h2{
+            width: 100%;
+            font-size: 48px;
+            line-height: 49px;
+            text-align: center;
+        }
+
+        nav{
+            width: 100%;
+        }
+        ul{
+            text-align: center;
+        }
+        a{
+            padding: 4px 2px; 
+        } 
+    }
+    main{
         article{
             p{
                 height: 45px;
@@ -276,7 +306,7 @@ header{
 /* All Mobile Sizes (devices and browser) */
 @media only screen and (max-width: $tabletWidth - 1) {
     /* add code here */
-    .animals{
+    main{
         article{
             .a-image, .info{
                 width: 48% !important;

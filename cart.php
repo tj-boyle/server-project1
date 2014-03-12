@@ -1,23 +1,13 @@
-<?php include("./assets/includes/connect.php") ?>
+<?php include("assets/includes/connect.php") ?>
 <!DOCTYPE html>
 <html>
 <?php include_once('assets/includes/head.php'); ?>
 <body>
     <?php
         $current = "cart"; 
-
-        if (!empty($_SESSION['LoggedIn']) && !empty($_SESSION['UserName'])){
-            $username       = $_SESSION['UserName'];
-
-            $Query = $con->prepare("SELECT Type FROM users WHERE UserName = ?");
-            $Query->bind_param('s', $username);
-            $Query->execute();
-            $res = $Query->get_result();
-            $row = $res->fetch_assoc();
-            $type            = $row['Type'];
-        }
-        
         include_once('assets/includes/header.php'); 
+    
+
     ?>
 
     <main role="main" class='container animals'>
@@ -26,8 +16,16 @@
             <?php
                 if (!empty($_SESSION['LoggedIn']) && !empty($_SESSION['UserName'])) {
 
+                    /**
+                    *   Save username from SESSION
+                    *   @var string
+                    */
                     $username       = $_SESSION['UserName'];
 
+                    /**
+                    *   Retrieves the current session UID
+                    *   @var integer
+                    */
                     $Query = $con->prepare("SELECT UID FROM users WHERE UserName = ?");
                     $Query->bind_param('s', $username);
                     $Query->execute();
@@ -35,10 +33,11 @@
                     $row = $res->fetch_assoc();
                     $UID            = $row['UID'];
                     
+                    //Selects all from current users's cart
                     $Query = "SELECT * FROM `cart` WHERE UID = $UID";
-                    //Goes through query results
                     $v_TheResult = mysqli_query ($con, $Query); 
                     
+                    //Goes through query results
                     while($row = mysqli_fetch_array($v_TheResult)){
                         include("assets/includes/animal.php");
                     }  
@@ -49,12 +48,14 @@
     </main>
 
     <script>
+        //Checks for empty cart, disables button if empty
         $( document ).ready(function(){
             if($(".cart").length == 0){
                 $("input").attr("disabled", "disabled");
             }
         });
 
+        //On button click, send ajax call with appropriate data
         $("input[type='button']").click(function(){
             $.ajax({
                 url: "LIB_project1.php",
@@ -64,6 +65,7 @@
                     
                 },
                 success: function(res){
+                    //If successful, remove all items from cart in HTML, and disable button
                     $(".cart").remove();
                     $("input").attr("disabled", "disabled");
                     //document.location = "list.php?list_id=" + res;

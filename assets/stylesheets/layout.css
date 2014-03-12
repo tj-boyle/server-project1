@@ -191,20 +191,39 @@ header h2 {
 }
 /* line 124, ../sass/layout.scss */
 header ul {
-  padding-top: 14px;
+  padding-top: 7px;
 }
 /* line 128, ../sass/layout.scss */
 header li {
   list-style-type: none;
   display: inline;
 }
-
-/* line 134, ../sass/layout.scss */
-.animals {
-  margin-top: 28px;
+/* line 133, ../sass/layout.scss */
+header a {
+  padding: 4px 7px;
+  display: inline-block;
 }
-/* line 137, ../sass/layout.scss */
-.animals h3 {
+/* line 139, ../sass/layout.scss */
+header .account {
+  background-color: #4cd59c;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  border-bottom: 3px solid #3ba679;
+}
+/* line 144, ../sass/layout.scss */
+header .account:hover {
+  background-color: #3ba679;
+}
+
+/* line 149, ../sass/layout.scss */
+main {
+  margin-top: 28px !important;
+}
+/* line 152, ../sass/layout.scss */
+main h3 {
   color: white;
   background-color: #4cd59c;
   padding: 7px 14px 11px 14px;
@@ -216,13 +235,13 @@ header li {
   border-radius: 4px;
   text-shadow: #3ba679 1px 2px 0;
 }
-/* line 146, ../sass/layout.scss */
-.animals .form {
+/* line 161, ../sass/layout.scss */
+main .form {
   box-sizing: initial;
   margin-top: 28px;
 }
-/* line 150, ../sass/layout.scss */
-.animals .form form {
+/* line 165, ../sass/layout.scss */
+main .form form {
   background-color: white;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -231,30 +250,27 @@ header li {
   border-radius: 4px;
   padding: 7px 14px;
 }
-/* line 155, ../sass/layout.scss */
-.animals .form form input {
+/* line 170, ../sass/layout.scss */
+main .form form input {
   margin: auto;
   width: 100%;
 }
-/* line 159, ../sass/layout.scss */
-.animals .form form input[type="button"] {
+/* line 174, ../sass/layout.scss */
+main .form form input[type="button"] {
   text-align: center;
 }
-/* line 165, ../sass/layout.scss */
-.animals .list {
-  height: 150px;
-}
-/* line 169, ../sass/layout.scss */
-.animals .cart {
+/* line 180, ../sass/layout.scss */
+main .cart {
   height: 91px;
   padding: 7px;
 }
-/* line 173, ../sass/layout.scss */
-.animals .cart p {
+/* line 184, ../sass/layout.scss */
+main .cart p {
   white-space: nowrap;
 }
-/* line 178, ../sass/layout.scss */
-.animals article {
+/* line 189, ../sass/layout.scss */
+main article {
+  height: 150px;
   margin-bottom: 30px;
   background-color: white;
   border-bottom: 3px solid #4cd59c;
@@ -265,38 +281,38 @@ header li {
   -o-border-radius: 3px;
   border-radius: 3px;
 }
-/* line 185, ../sass/layout.scss */
-.animals article h4 {
+/* line 197, ../sass/layout.scss */
+main article h4 {
   color: #787878;
   border-bottom: 1px dashed #d4d4d4;
   white-space: nowrap;
   overflow: hidden;
 }
-/* line 192, ../sass/layout.scss */
-.animals article span {
+/* line 204, ../sass/layout.scss */
+main article span {
   font-weight: bold;
 }
-/* line 196, ../sass/layout.scss */
-.animals article p {
+/* line 208, ../sass/layout.scss */
+main article p {
   height: 65px;
   text-overflow: ellipsis;
   overflow: hidden;
   margin-bottom: 0px;
 }
-/* line 203, ../sass/layout.scss */
-.animals article input {
+/* line 215, ../sass/layout.scss */
+main article input {
   width: 100%;
 }
-/* line 207, ../sass/layout.scss */
-.animals article span {
+/* line 219, ../sass/layout.scss */
+main article span {
   border: none;
 }
-/* line 211, ../sass/layout.scss */
-.animals article [contenteditable="true"] {
+/* line 223, ../sass/layout.scss */
+main article [contenteditable="true"] {
   border: 1px solid #d4d4d4;
 }
-/* line 215, ../sass/layout.scss */
-.animals article .a-image {
+/* line 227, ../sass/layout.scss */
+main article .a-image {
   height: 150px;
   background-size: cover;
   background-position: 50%;
@@ -308,28 +324,28 @@ header li {
   border-bottom-left-radius: 3px;
   border-bottom: 3px solid #4cd59c;
 }
-/* line 222, ../sass/layout.scss */
-.animals article .a-image input {
+/* line 234, ../sass/layout.scss */
+main article .a-image input {
   position: relative;
   top: 40%;
 }
-/* line 228, ../sass/layout.scss */
-.animals article .info {
+/* line 240, ../sass/layout.scss */
+main article .info {
   padding: 7px 21px 0 0px;
 }
-/* line 232, ../sass/layout.scss */
-.animals article .delete, .animals article .update {
+/* line 244, ../sass/layout.scss */
+main article .delete, main article .update {
   padding-left: 0;
   padding-right: 0;
   width: 48%;
   display: inline;
 }
-/* line 238, ../sass/layout.scss */
-.animals article .delete {
+/* line 250, ../sass/layout.scss */
+main article .delete {
   background-color: #db4e4f;
 }
-/* line 241, ../sass/layout.scss */
-.animals article .delete:hover {
+/* line 253, ../sass/layout.scss */
+main article .delete:hover {
   background-color: #b84142;
 }
 
@@ -346,8 +362,28 @@ header li {
 /* Smaller than standard 960 (devices and browsers) */
 @media only screen and (max-width: 959px) {
   /* add code here */
-  /* line 264, ../sass/layout.scss */
-  .animals article p {
+  /* line 275, ../sass/layout.scss */
+  header h2 {
+    width: 100%;
+    font-size: 48px;
+    line-height: 49px;
+    text-align: center;
+  }
+  /* line 282, ../sass/layout.scss */
+  header nav {
+    width: 100%;
+  }
+  /* line 285, ../sass/layout.scss */
+  header ul {
+    text-align: center;
+  }
+  /* line 288, ../sass/layout.scss */
+  header a {
+    padding: 4px 2px;
+  }
+
+  /* line 294, ../sass/layout.scss */
+  main article p {
     height: 45px;
   }
 }
@@ -358,16 +394,16 @@ header li {
 /* All Mobile Sizes (devices and browser) */
 @media only screen and (max-width: 767px) {
   /* add code here */
-  /* line 281, ../sass/layout.scss */
-  .animals article .a-image, .animals article .info {
+  /* line 311, ../sass/layout.scss */
+  main article .a-image, main article .info {
     width: 48% !important;
   }
-  /* line 285, ../sass/layout.scss */
-  .animals article .a-image {
+  /* line 315, ../sass/layout.scss */
+  main article .a-image {
     margin-right: 2%;
   }
-  /* line 289, ../sass/layout.scss */
-  .animals article .info {
+  /* line 319, ../sass/layout.scss */
+  main article .info {
     margin-left: 2%;
     padding-right: 14px;
   }

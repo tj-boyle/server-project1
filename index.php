@@ -5,32 +5,22 @@
 <body>
     <?php
         $current = "home"; 
-
-
-        if (!empty($_SESSION['LoggedIn']) && !empty($_SESSION['UserName'])){
-            $username       = $_SESSION['UserName'];
-
-            $Query = $con->prepare("SELECT Type FROM users WHERE UserName = ?");
-            $Query->bind_param('s', $username);
-            $Query->execute();
-            $res = $Query->get_result();
-            $row = $res->fetch_assoc();
-            $type            = $row['Type'];
-        }
         include_once('assets/includes/header.php'); 
+    
+
     ?>
 
-    <main role="main" class='container animals'>
+    <main role="main" class='container'>
         <section>
             <h3 class='sixteen columns'>Sale</h3>
             <?php
+                //Selects all products on sale and show them in the sale section
                 $Query = "SELECT * FROM `products` WHERE `sale_price` > 0";
-                //Goes through query results
                 $v_TheResult = mysqli_query ($con, $Query); 
                 
+                //Goes through query results
                 while($row = mysqli_fetch_array($v_TheResult)){ 
                     include("assets/includes/animal.php");
-
                 }
             ?>
         </section>
@@ -38,14 +28,13 @@
             <h3 class='sixteen columns'>Catalog</h3>
             <div id='itemContainer'>
                 <?php
+                    //Selects all products not on sale and shows them in the catalog section
                     $Query = "SELECT * FROM `products` WHERE `sale_price` = 0";
-                    //Goes through query results
                     $v_TheResult = mysqli_query ($con, $Query); 
                     
+                    //Goes through query results
                     while($row = mysqli_fetch_array($v_TheResult)){ 
-
                         include("assets/includes/animal.php");
-
                     }
                 ?>
             </div>
@@ -55,6 +44,7 @@
     </main>
     
     <script>
+        //Pagination
         $(function(){
             $("div.holder").jPages({
                 containerID : "itemContainer",
@@ -62,8 +52,9 @@
             });
         });
 
+        //Checks for products that have no more quantity, and disable their buttons
         $( document ).ready(function(){
-            $animals      = $(".animal");
+            $animals      = $("article");
 
             $animals.each(function( index ){
                 $this_item      = $( this );
@@ -79,6 +70,7 @@
             });
         });
         
+        //On button click, send ajax call with appropriate data
         $("input[type='button']").click(function(){
 
             $this_item      = $(this).parent().parent();
@@ -90,27 +82,26 @@
             $button         = $this_item.find("input");
 
             
-            if($quantity.html() == 0){
-                $button.attr("disabled", "disabled");
-            }
-            else{
-                $.ajax({
-                    url: "LIB_project1.php",
-                    type: "POST",
-                    data: { 
-                        "Function":     "addToCart",
-                        "Id":           $id,
-                        "Product_name": $product_name,
-                        "Description":  $description,
-                        "Price":        $price
-                    },
-                    success: function(res){
-                        //alert(res);
-                        $quantity.html($quantity.html()-1);
-                        //document.location = "list.php?list_id=" + res;
+            $.ajax({
+                url: "LIB_project1.php",
+                type: "POST",
+                data: { 
+                    "Function":     "addToCart",
+                    "Id":           $id,
+                    "Product_name": $product_name,
+                    "Description":  $description,
+                    "Price":        $price
+                },
+                success: function(res){
+                    //Update quantity on ajax call success
+                    $quantity.html($quantity.html()-1);
+        
+                    //If after button click the quantity is 0, disable the button
+                    if($quantity.html() == 0){
+                        $button.attr("disabled", "disabled");
                     }
-                });
-            }
+                }
+            });
         });
     </script>
 </body>

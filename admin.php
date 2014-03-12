@@ -5,19 +5,9 @@
 <body>
     <?php
         $current = "admin";
-        $numSale = 0;
-        
-        if (!empty($_SESSION['LoggedIn']) && !empty($_SESSION['UserName'])){
-            $username       = $_SESSION['UserName'];
-
-            $Query = $con->prepare("SELECT Type FROM users WHERE UserName = ?");
-            $Query->bind_param('s', $username);
-            $Query->execute();
-            $res = $Query->get_result();
-            $row = $res->fetch_assoc();
-            $type            = $row['Type'];
-        }
         include_once('assets/includes/header.php'); 
+        
+        $numSale = 0;
     ?>
 
     <main role="main" class='container animals'>
@@ -25,23 +15,25 @@
             <h3 class='sixteen columns'>Admin Panel</h3>
             <?php 
                 if (!empty($_SESSION['LoggedIn']) && !empty($_SESSION['UserName'])) { 
+                    
+                    /**
+                    *   Save username from SESSION
+                    *   @var string
+                    */
                     $username       = $_SESSION['UserName'];
 
-                    // $Query = $con->prepare("SELECT Type FROM users WHERE UserName = ?");
-                    // $Query->bind_param('s', $username);
-                    // $Query->execute();
-                    // $res = $Query->get_result();
-                    // $row = $res->fetch_assoc();
-                    // $type            = $row['Type'];
+                    // If account type is 1, it is an administrator account
+                    if ($type == 1) {
 
-                    if($type == 1){
+                        //Query to select all from products table
                         $Query = "SELECT * FROM `products`";
-                        //Goes through query results
                         $v_TheResult = mysqli_query ($con, $Query); 
                         
+                        //Goes through query results, includes animal with editable content
                         $new = false;
                         while ($row = mysqli_fetch_array($v_TheResult)) { 
                             
+                            //Increments numSale variable
                             if ($row["sale_price"] > 0) {
                                 $numSale++;
                             }
@@ -49,10 +41,12 @@
                             include("assets/includes/animal.php");
                         }
 
+                        //Creates animal with black spots for new animals
                         $new = true;
                         include("assets/includes/animal.php");
                     }
                     else { 
+                        //Not authorized message if at page without authorization
                         echo("<div class='six columns offset-by-five form'>");
                         echo("<h4 >Error: Not authorized</h4>");
                         echo("</div>");
@@ -60,32 +54,47 @@
                 }
 
                 else{
+                    //Not authorized message if at page without authorization
                     echo("<div class='six columns offset-by-five form'>");
                     echo("<h4 >Error: Not authorized</h4>");
                     echo("</div>");
                 }
             ?>
-
         </section>
     </main>
 
     <script>
         numSale = 0;
 
+        //Checks ammount of items on sale when document loads
+        //Also sets appropriate elements to editable
         $(document).ready(function(){
-            $(".admin").each(function(){
+
+            $("article").each(function(){
+                
+
                 $sale_price     = $(this).find("#price").html();
                 if($sale_price > 0){
                     numSale++;
                 }
+
+                $(this).find(".a-image input").attr("contenteditable","true");
+                $(this).find("h4").attr("contenteditable","true");
+                $(this).find("#price").attr("contenteditable","true");
+                $(this).find("#orig").attr("contenteditable","true");
+                $(this).find("#quantity").attr("contenteditable","true");
+                $(this).find("p").attr("contenteditable","true");
             })
 
             console.log(numSale);
         });
 
+        //On update button click, check data
         $(".update").click(function(){
             $this_item      = $(this).parent().parent();
             $picture        = $this_item.find(".a-image input").attr("value");
+            
+            //Checks for valid image url
             IsValidImageUrl($picture, function(result) { 
 
                 if(result){
@@ -104,29 +113,31 @@
             });
         });
 
+        //On add button click, check data
         $(".add").click(function(){
             $this_item      = $(this).parent().parent();
             $pictureInput   = $this_item.find(".a-image input")
             $picture        = $pictureInput.attr("value");
 
+            //Checks for valid image url
             IsValidImageUrl($picture, function(result) { 
-
+                //If valid, check rest of items are valid and call dbChange
                 if(result){
                     if(IsValidChange($this_item)){
                         dbChange($this_item, true);
                     }
                     else{
-                        //alert("Invalid data");
                     }
                 }
                 else{
+                    //Alert user that picture URL is invalid
                     $pictureInput.css("border", "1px solid red");
-                    //alert("Invalid url");
                 }
 
             });
         })
 
+        //On add button click, send ajax call with appropriate data
         $(".delete").click(function(){
 
             $this_item      = $(this).parent().parent();
@@ -140,12 +151,14 @@
                     "Id":           $id,
                 },
                 success: function(res){
-                    //alert(res);
+                    //Removes item
                     document.getElementById(res).remove();
                 }
             });
         });
 
+        //Checks src, if error then it is not a valid image url
+        //If success, it is valid
         function IsValidImageUrl(url, callback) {
             $('<img>', {
                 src: url, 
@@ -154,6 +167,10 @@
             });
         }
 
+        /**
+        *   Validates all necessary POST variables on the client side
+        *   and returns boolean value of whether or not they are valid
+        */
         function IsValidChange(item){
             $this_item           = $(item);
             $id                  = $this_item.attr("id");
@@ -248,6 +265,10 @@
             return true;           
         }
 
+        /*
+        *   On call, get all appropriate elements and send ajax call to either update the item or
+        *   add a new item, done on the server side
+        */
         function dbChange(item, newItem){
             $this_item      = $(item);
             $id             = $this_item.attr("id");
@@ -281,13 +302,15 @@
                     "Sale_price":   $sale_price,
                 },
                 success: function(res){
-                    //alert(res);
                     
+                    // If update, updates the image url since all others are already updated 
+                    // because the user input the values.                    
                     if(newItem == false){
                         $this_item.find(".a-image").css('background-image', 'url(' + res + ')');
                     }
+                    // Temporary update fix for if new item. Doesnt add entire element, 
+                    // just reloads page to show change
                     else{
-                        //Temporary update fix
                         document.location.reload();
                     } 
                 },
