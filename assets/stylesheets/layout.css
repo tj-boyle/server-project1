@@ -115,12 +115,12 @@ input[type="button"]:hover, input[type="submit"]:hover {
 
 /* line 70, ../sass/layout.scss */
 .left {
-  float: left;
+  float: left !important;
 }
 
 /* line 71, ../sass/layout.scss */
 .right {
-  float: right;
+  float: right !important;
 }
 
 /* line 73, ../sass/layout.scss */
@@ -253,36 +253,8 @@ header li {
 .animals .cart p {
   white-space: nowrap;
 }
-/* line 179, ../sass/layout.scss */
-.animals .admin .delete, .animals .admin .update {
-  padding-left: 0;
-  padding-right: 0;
-  width: 48%;
-  display: inline;
-}
-/* line 185, ../sass/layout.scss */
-.animals .admin .delete {
-  background-color: #db4e4f;
-}
-/* line 188, ../sass/layout.scss */
-.animals .admin .delete:hover {
-  background-color: #b84142;
-}
-/* line 192, ../sass/layout.scss */
-.animals .admin .a-image input {
-  position: relative;
-  top: 40%;
-}
-/* line 197, ../sass/layout.scss */
-.animals .admin [contenteditable="true"] {
-  border: 1px solid #d4d4d4;
-}
-/* line 201, ../sass/layout.scss */
-.animals .admin span {
-  border: none;
-}
-/* line 206, ../sass/layout.scss */
-.animals .animal {
+/* line 178, ../sass/layout.scss */
+.animals article {
   margin-bottom: 30px;
   background-color: white;
   border-bottom: 3px solid #4cd59c;
@@ -293,8 +265,38 @@ header li {
   -o-border-radius: 3px;
   border-radius: 3px;
 }
-/* line 213, ../sass/layout.scss */
-.animals .animal .a-image {
+/* line 185, ../sass/layout.scss */
+.animals article h4 {
+  color: #787878;
+  border-bottom: 1px dashed #d4d4d4;
+  white-space: nowrap;
+  overflow: hidden;
+}
+/* line 192, ../sass/layout.scss */
+.animals article span {
+  font-weight: bold;
+}
+/* line 196, ../sass/layout.scss */
+.animals article p {
+  height: 65px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin-bottom: 0px;
+}
+/* line 203, ../sass/layout.scss */
+.animals article input {
+  width: 100%;
+}
+/* line 207, ../sass/layout.scss */
+.animals article span {
+  border: none;
+}
+/* line 211, ../sass/layout.scss */
+.animals article [contenteditable="true"] {
+  border: 1px solid #d4d4d4;
+}
+/* line 215, ../sass/layout.scss */
+.animals article .a-image {
   height: 150px;
   background-size: cover;
   background-position: 50%;
@@ -306,35 +308,29 @@ header li {
   border-bottom-left-radius: 3px;
   border-bottom: 3px solid #4cd59c;
 }
-/* line 221, ../sass/layout.scss */
-.animals .animal .info {
-  padding: 7px 20px 0 0px;
+/* line 222, ../sass/layout.scss */
+.animals article .a-image input {
+  position: relative;
+  top: 40%;
 }
-/* line 225, ../sass/layout.scss */
-.animals .animal h4 {
-  color: #787878;
-  border-bottom: 1px dashed #d4d4d4;
-  white-space: nowrap;
-  overflow: hidden;
+/* line 228, ../sass/layout.scss */
+.animals article .info {
+  padding: 7px 21px 0 0px;
 }
 /* line 232, ../sass/layout.scss */
-.animals .animal span {
-  font-weight: bold;
+.animals article .delete, .animals article .update {
+  padding-left: 0;
+  padding-right: 0;
+  width: 48%;
+  display: inline;
 }
-/* line 236, ../sass/layout.scss */
-.animals .animal p {
-  height: 65px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  margin-bottom: 0px;
-}
-/* line 243, ../sass/layout.scss */
-.animals .animal input {
-  width: 100%;
-}
-/* line 247, ../sass/layout.scss */
-.animals .animal .holder {
+/* line 238, ../sass/layout.scss */
+.animals article .delete {
   background-color: #db4e4f;
+}
+/* line 241, ../sass/layout.scss */
+.animals article .delete:hover {
+  background-color: #b84142;
 }
 
 /* PAGE STYLES
@@ -350,8 +346,8 @@ header li {
 /* Smaller than standard 960 (devices and browsers) */
 @media only screen and (max-width: 959px) {
   /* add code here */
-  /* line 269, ../sass/layout.scss */
-  .animals .animal p {
+  /* line 264, ../sass/layout.scss */
+  .animals article p {
     height: 45px;
   }
 }
@@ -362,6 +358,19 @@ header li {
 /* All Mobile Sizes (devices and browser) */
 @media only screen and (max-width: 767px) {
   /* add code here */
+  /* line 281, ../sass/layout.scss */
+  .animals article .a-image, .animals article .info {
+    width: 48% !important;
+  }
+  /* line 285, ../sass/layout.scss */
+  .animals article .a-image {
+    margin-right: 2%;
+  }
+  /* line 289, ../sass/layout.scss */
+  .animals article .info {
+    margin-left: 2%;
+    padding-right: 14px;
+  }
 }
 /* Mobile Landscape Size to Tablet Portrait (devices and browsers) */
 @media only screen and (min-width: 480px) and (max-width: 767px) {

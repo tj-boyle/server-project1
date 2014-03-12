@@ -1,8 +1,26 @@
+<?php
+    $type = "";
+
+    switch ($current) {
+        case "home":
+            $type = "list";
+            break;
+
+        case "cart":
+            $type = "cart";
+            break;
+
+        case "admin":
+            $type = "list admin";
+            break;
+    }
+?>
+
 <?php if($current == "home"): ?>
     
-    <article class='eight columns animal list' id="<?=$row['id']?>">
-        <div class='four columns alpha a-image' style="background-image: url('<?=$row['picture']?>');"></div>
-        <div class='four columns omega info'>
+    <article class='eight columns list' id="<?=$row['id']?>">
+        <div class='four columns alpha a-image left' style="background-image: url('<?=$row['picture']?>');"></div>
+        <div class='four columns omega info right'>
             <h4><?=$row["product_name"]?></h4>
             <?php if ($row['sale_price'] == 0): ?>
                 $<span id='price'><?=$row['price']?></span> - <span id='quantity'><?=$row["quantity"]?></span> left
@@ -19,7 +37,7 @@
 
 <?php elseif($current == "cart"): ?>
 
-    <article class='sixteen columns animal cart' id="<?=$row['id']?>">
+    <article class='sixteen columns cart' id="<?=$row['id']?>">
         <h4><?=$row["product_name"]?></h4>
         $<span id='price'><?=$row['price']?></span> - <span id='quantity'>1</span>
         <p><?=$row["description"]?></p>
@@ -29,7 +47,7 @@
 
     <?php if($new == false):?>
 
-        <article class='eight columns animal list admin' id="<?=$row['id']?>">
+        <article class='eight columns list admin' id="<?=$row['id']?>">
             <div contenteditable='true' class='four columns alpha a-image' style="background-image: url('<?=$row['picture']?>');"><input type='text' value="<?=$row['picture']?>"></div>
             <div class='four columns omega info'>
                 <h4 contenteditable='true'><?=$row["product_name"]?></h4>
@@ -44,7 +62,7 @@
 
     <?php else: ?>
 
-        <article class='eight columns animal list admin' id="-1">
+        <article class='eight columns list admin' id="-1">
             <div contenteditable='true' class='four columns alpha a-image' style="background-image: url('');"><input type='text' placeholder='Image url...'></div>
             <div class='four columns omega info'>
                 <h4 contenteditable='true'>New Plushie</h4>

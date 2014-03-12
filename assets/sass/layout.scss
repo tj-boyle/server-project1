@@ -67,8 +67,8 @@ input[type="button"]:hover,input[type="submit"]:hover{
     @include box-sizing(border-box);
 }
 
-.left{ float: left;}
-.right{ float: right;}
+.left{ float: left !important;}
+.right{ float: right !important;}
 
 input[type="button"],input[type="submit"] {
     font-weight: bold;
@@ -175,53 +175,13 @@ header{
         }
     }
 
-    .admin{
-        .delete, .update{
-            padding-left: 0;
-            padding-right: 0;
-            width: 48%;
-            display: inline;
-        }
-        .delete{
-            background-color: $red;
-        }
-        .delete:hover{
-            background-color: $dred;
-        }
-
-        .a-image input{
-            position: relative;
-            top: 40%;
-        }
-    
-        [contenteditable="true"]{
-            border: 1px solid $grey;
-        }
-
-        span{
-            border: none;
-        }
-    }
-
-    .animal{
+    article{
         margin-bottom: 30px;
         background-color: white;
         border-bottom: 3px solid $teal;
         width: 100%;
         @include border-radius(3px);
-
-        .a-image{
-            height: 150px;
-            background-size: cover;
-            background-position: 50%;
-            @include border-left-radius(3px);
-            border-bottom: 3px solid $teal;
-        }
-
-        .info{
-            padding: 7px 20px 0 0px;
-        }
-
+        
         h4{
             color: $dgrey; 
             border-bottom: 1px dashed $grey;    
@@ -243,12 +203,47 @@ header{
         input{
             width: 100%;
         }
+        
+        span{
+            border: none;
+        }
 
-        .holder{
-            background-color: $red; 
+        [contenteditable="true"]{
+            border: 1px solid $grey;
+        }
+        
+        .a-image{
+            height: 150px;
+            background-size: cover;
+            background-position: 50%;
+            @include border-left-radius(3px);
+            border-bottom: 3px solid $teal;
+            
+            input{
+                position: relative;
+                top: 40%;
+            }
+        }
+
+        .info{
+            padding: 7px 21px 0 0px;
+        }
+
+        .delete, .update{
+            padding-left: 0;
+            padding-right: 0;
+            width: 48%;
+            display: inline;
+        }
+        .delete{
+            background-color: $red;
+        }
+        .delete:hover{
+            background-color: $dred;
         }
     }
 }
+
 /* PAGE STYLES
  * ------------------------------------------------ */
 /* Add page styles here */
@@ -265,7 +260,7 @@ header{
 @media only screen and (max-width: $baseWidthMQ - 1) {
 	/* add code here */
     .animals{
-        .animal{
+        article{
             p{
                 height: 45px;
             }
@@ -280,7 +275,23 @@ header{
 
 /* All Mobile Sizes (devices and browser) */
 @media only screen and (max-width: $tabletWidth - 1) {
-	/* add code here */
+    /* add code here */
+    .animals{
+        article{
+            .a-image, .info{
+                width: 48% !important;
+            }
+
+            .a-image{
+                margin-right: 2%;
+            }
+
+            .info{
+                margin-left: 2%;
+                padding-right: 14px;
+            }
+        }
+    }
 }
 
 /* Mobile Landscape Size to Tablet Portrait (devices and browsers) */

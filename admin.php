@@ -17,55 +17,54 @@
             $row = $res->fetch_assoc();
             $type            = $row['Type'];
         }
-        
         include_once('assets/includes/header.php'); 
     ?>
 
     <main role="main" class='container animals'>
         <section>
-        <h3 class='sixteen columns'>Admin Panel</h3>
-        <?php 
-            if (!empty($_SESSION['LoggedIn']) && !empty($_SESSION['UserName'])) { 
-                $username       = $_SESSION['UserName'];
+            <h3 class='sixteen columns'>Admin Panel</h3>
+            <?php 
+                if (!empty($_SESSION['LoggedIn']) && !empty($_SESSION['UserName'])) { 
+                    $username       = $_SESSION['UserName'];
 
-                // $Query = $con->prepare("SELECT Type FROM users WHERE UserName = ?");
-                // $Query->bind_param('s', $username);
-                // $Query->execute();
-                // $res = $Query->get_result();
-                // $row = $res->fetch_assoc();
-                // $type            = $row['Type'];
+                    // $Query = $con->prepare("SELECT Type FROM users WHERE UserName = ?");
+                    // $Query->bind_param('s', $username);
+                    // $Query->execute();
+                    // $res = $Query->get_result();
+                    // $row = $res->fetch_assoc();
+                    // $type            = $row['Type'];
 
-                if($type == 1){
-                    $Query = "SELECT * FROM `products`";
-                    //Goes through query results
-                    $v_TheResult = mysqli_query ($con, $Query); 
-                    
-                    $new = false;
-                    while ($row = mysqli_fetch_array($v_TheResult)) { 
+                    if($type == 1){
+                        $Query = "SELECT * FROM `products`";
+                        //Goes through query results
+                        $v_TheResult = mysqli_query ($con, $Query); 
                         
-                        if ($row["sale_price"] > 0) {
-                            $numSale++;
+                        $new = false;
+                        while ($row = mysqli_fetch_array($v_TheResult)) { 
+                            
+                            if ($row["sale_price"] > 0) {
+                                $numSale++;
+                            }
+
+                            include("assets/includes/animal.php");
                         }
 
+                        $new = true;
                         include("assets/includes/animal.php");
                     }
-
-                    $new = true;
-                    include("assets/includes/animal.php");
+                    else { 
+                        echo("<div class='six columns offset-by-five form'>");
+                        echo("<h4 >Error: Not authorized</h4>");
+                        echo("</div>");
+                    }
                 }
-                else { 
+
+                else{
                     echo("<div class='six columns offset-by-five form'>");
                     echo("<h4 >Error: Not authorized</h4>");
                     echo("</div>");
                 }
-            }
-
-            else{
-                echo("<div class='six columns offset-by-five form'>");
-                echo("<h4 >Error: Not authorized</h4>");
-                echo("</div>");
-            }
-        ?>
+            ?>
 
         </section>
     </main>

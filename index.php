@@ -5,6 +5,8 @@
 <body>
     <?php
         $current = "home"; 
+
+
         if (!empty($_SESSION['LoggedIn']) && !empty($_SESSION['UserName'])){
             $username       = $_SESSION['UserName'];
 
@@ -19,7 +21,6 @@
     ?>
 
     <main role="main" class='container animals'>
-
         <section>
             <h3 class='sixteen columns'>Sale</h3>
             <?php
