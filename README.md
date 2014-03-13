@@ -2,7 +2,7 @@
 ### Server Programming - Project 1: E-Commerce Site
 
 ###TODO:
-...
+---
 + ~~Enable password protection for admin page~~
 + Better validation alerts
   * Sale Items
@@ -10,12 +10,12 @@
   * Allow for removing item and adding item to sale without refresh
 + Lazy Loading?
 + Refactor
-  * Go over logic
-  * Comment
+  * ~~Go over logic~~
+  * ~~Comment~~
 + Reorganize README
 
 ###Requirements
-...
+---
 + This site will consist of at least 4 PHP files: index.php, cart.php, admin.php and LIB_project1.php
 + Each page will share common graphic elements, and will have a global navigation system that links to every other page. These common elements MUST be achieved through the use of functions or a template system. Points will be deducted if common code (html or php) is copied on more than one page.
 + These pages will be located in the student's: ~abc1234/Sites/341/project1/ folder on nova.
@@ -56,7 +56,7 @@ tags and changing the order of creating the sections of the pages and CSS files 
   * Zip up entire project (file structure intact!) in a folder with your last name
 
 ###Grading
-
+---
 + An excellent project (worthy of an A) will have everything plus something extra 
   * Evidence of excel
 + Shows going above and beyond
