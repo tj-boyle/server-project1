@@ -5,14 +5,13 @@
 ---
 + ~~Enable password protection for admin page~~
 + Better validation alerts
-  * Sale Items
-  * Disable less than 3 sale items
+  * ~~Disable less than 3 sale items~~
   * Allow for removing item and adding item to sale without refresh
-+ Lazy Loading?
++ Image preloading
 + Refactor
   * ~~Go over logic~~
   * ~~Comment~~
-+ Reorganize README
++ ~~Reorganize README~~
 
 ###Requirements
 ---

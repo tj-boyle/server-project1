@@ -82,51 +82,48 @@
         $(document).ready(function(){
 
             $("article").each(function(){
-                
-
-                $sale_price     = $(this).find("#price").html();
-                if($sale_price > 0){
-                    numSale++;
-                }
-
                 $(this).find(".a-image input").attr("contenteditable","true");
                 $(this).find("h4").attr("contenteditable","true");
                 $(this).find("#price").attr("contenteditable","true");
                 $(this).find("#orig").attr("contenteditable","true");
                 $(this).find("#quantity").attr("contenteditable","true");
                 $(this).find("p").attr("contenteditable","true");
-            })
+            });
 
-            console.log(numSale);
+            getSaleNum();
         });
 
-        //On update button click, check data
-        $(".update").click(function(){
-            $this_item      = $(this).parent().parent();
-            $picture        = $this_item.find(".a-image input").attr("value");
+        //Gets the sale number for valid sale price checking
+        function getSaleNum(){
             
-            //Checks for valid image url
-            IsValidImageUrl($picture, function(result) { 
-
-                if(result){
-                    if(IsValidChange($this_item)){
-                        dbChange($this_item, false);
-                    }
-                    else{
-                        alert("Invalid data");
-                    }
-                }
-                else{
-                    $this_item.find(".a-image input").css("border", "1px solid red");
-                    alert("Invalid url");
+            numSale = 0;
+            
+            //Goes through each article and adds to numSale if price is above 0
+            $("article").each(function(){
+                $sale_price     = $(this).find("#price").html();
+                if($sale_price > 0){
+                    numSale++;
                 }
 
             });
+
+            // console.log("numSale = " + numSale);
+        }
+
+        //On update button click, check data
+        $(".update").click(function(){
+            Validate(this, false);
         });
 
         //On add button click, check data
         $(".add").click(function(){
-            $this_item      = $(this).parent().parent();
+            Validate(this, true);
+        })
+
+        //Validates clicked item for both valid image url and valid change
+        //Then it calls the dbChange function
+        function Validate(item, type){
+            $this_item      = $(item).parent().parent();
             $pictureInput   = $this_item.find(".a-image input")
             $picture        = $pictureInput.attr("value");
 
@@ -135,7 +132,7 @@
                 //If valid, check rest of items are valid and call dbChange
                 if(result){
                     if(IsValidChange($this_item)){
-                        dbChange($this_item, true);
+                        dbChange($this_item, type);
                     }
                     else{
                     }
@@ -143,10 +140,10 @@
                 else{
                     //Alert user that picture URL is invalid
                     $pictureInput.css("border", "1px solid red");
+                    alert("Invalid url");
                 }
-
             });
-        })
+        }
 
         //On add button click, send ajax call with appropriate data
         $(".delete").click(function(){
@@ -183,6 +180,10 @@
         *   and returns boolean value of whether or not they are valid
         */
         function IsValidChange(item){
+
+            getSaleNum();
+
+
             $this_item           = $(item);
             $id                  = $this_item.attr("id");
 
@@ -231,17 +232,18 @@
                 $quantity_valid = true;
             }
 
-            if(     $sale_price == 0){
+            if(     $sale_price >= 0
+                &&  $sale_price < 100
+                &&  numSale <= 5
+                &&  numSale >= 3
+                
+                ){
+
                 $sale_price_valid = true;
             }
 
-            if(     $sale_price > 0
-                &&  $sale_price < 100
-                &&  numSale < 5){
-
-                numSale++;
-                console.log(numSale);
-                $sale_price_valid = true;
+            if($sale_price_valid){
+                console.log("Price valid");
             }
 
             var htmlElements = [];
@@ -289,7 +291,8 @@
             $quantity       = $this_item.find("#quantity").html();
             $picture        = $this_item.find(".a-image input").attr("value");
             $sale_price     = $this_item.find("#price").html();
-            
+
+            console.log("This sale price is: " + $sale_price);
 
             //alert($quantity);
             if(newItem == false){
