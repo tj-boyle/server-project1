@@ -77,6 +77,53 @@
             ?>            
         </section>
     </main>
+    
+    <script>
+        /**
+        *   Function to validate username, password, and email input on client side
+        */
+        function validate()
+        {
+            var usernameInput = document.getElementById("username");
+            $username = usernameInput.value;
 
+            var passwordInput = document.getElementById("password"); 
+            $password = passwordInput.value;
+
+            var emailInput = document.getElementById("email"); 
+            $email = emailInput.value;
+            
+            $validName  = $username != "" && $username.length < 25;
+            $validPass  = $password != "";
+            $validEmail = $email    != "" && $email.indexOf("@") >= 0; 
+
+            if (!$validName) {
+                usernameInput.style.border="1px solid red";     
+            }
+            else{
+                usernameInput.style.border="1px solid grey";
+            }
+
+            if (!$validPass) {
+                passwordInput.style.border="1px solid red";
+            }
+            else{
+                passwordInput.style.border="1px solid grey";
+            }
+
+            if (!$validEmail) {
+                emailInput.style.border="1px solid red";
+            }
+            else{
+                emailInput.style.border="1px solid grey";
+            }
+
+            if ($validPass && $validName && $validEmail) {
+                return true;
+            }
+            
+            return false;
+        }
+    </script>
 </body>
 </html>

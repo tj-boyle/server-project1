@@ -4,10 +4,10 @@
         * Wraps form in proper tag based on form type
         */ 
         if ($formtype == "reg") {
-            echo "<form method='post' action='register.php' name='registerform' id='registerform'>";
+            echo "<form method='post' action='register.php' name='registerform' id='registerform' onsubmit='return validate()'>";
         }
         elseif ($formtype =="login"){
-            echo "<form method='post' action='login.php' name='loginform' id='loginform'>";
+            echo "<form method='post' action='login.php' name='loginform' id='loginform' onsubmit='return validate()'>";
         }
 
         /*

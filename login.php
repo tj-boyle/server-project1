@@ -73,5 +73,41 @@
         </section>
     </main>
 
+    <script>
+        /**
+        *   Function to validate username and password input on client side
+        */
+        function validate()
+        {
+            var usernameInput = document.getElementById("username");
+            $username = usernameInput.value;
+
+            var passwordInput = document.getElementById("password"); 
+            $password = passwordInput.value;
+            
+            $validName = $username != "" && $username.length < 25;
+            $validPass = $password != "";
+
+            if (!$validName) {
+                usernameInput.style.border="1px solid red";     
+            }
+            else{
+                usernameInput.style.border="1px solid grey";
+            }
+
+            if (!$validPass) {
+                passwordInput.style.border="1px solid red";
+            }
+            else{
+                passwordInput.style.border="1px solid grey";
+            }
+
+            if ($validPass && $validName) {
+                return true;
+            }
+            
+            return false;
+        }
+    </script>
 </body>
 </html>
