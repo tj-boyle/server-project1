@@ -19,7 +19,13 @@
         <section>
             <h3 class='sixteen columns'>Cart</h3>
             <?php
-                if (!empty($_SESSION['LoggedIn']) && !empty($_SESSION['UserName'])) {
+                /**
+                *   Boolean variable for session active
+                *   @var boolean
+                */
+                $unemptySess = !empty($_SESSION['LoggedIn']) && !empty($_SESSION['UserName']);
+
+                if ($unemptySess) { 
 
                     /**
                     *   Save username from SESSION

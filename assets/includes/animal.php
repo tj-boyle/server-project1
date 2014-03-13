@@ -1,5 +1,4 @@
 <?php
-    
     /**
     *   animal.php
     *   An include file for different pages

@@ -1,17 +1,6 @@
 ## Plushie Planet
 ### Server Programming - Project 1: E-Commerce Site
 
-###TODO:
----
-+ ~~Enable password protection for admin page~~
-+ Better validation alerts
-  * ~~Disable less than 3 sale items~~
-  * Allow for removing item and adding item to sale without refresh
-+ Image preloading
-+ Refactor
-  * ~~Go over logic~~
-  * ~~Comment~~
-+ ~~Reorganize README~~
 
 ###Requirements
 ---
