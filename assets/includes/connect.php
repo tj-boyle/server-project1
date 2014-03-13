@@ -1,4 +1,13 @@
 <?php
+    /**
+    *   connect.php
+    *   An include file for connecting to the proper database
+    *   
+    *   @author Thomas Boyle <tjb2597@rit.edu>   
+    *   @version 1.0
+    *   
+    *
+    */
     session_start(); 
     
     include_once('assets/includes/credentials.php');

@@ -1,6 +1,23 @@
 <?php 
+    /**
+    *   header.php
+    *   Contains all ajax call functions for various files
+    *   
+    *   @author Thomas Boyle <tjb2597@rit.edu>   
+    *   @version 1.0
+    *   
+    *
+    */
+
+    /**
+    *   Boolean variable for session active
+    *   @var boolean
+    */
     $unemptySess = !empty($_SESSION['LoggedIn']) && !empty($_SESSION['UserName']); 
 
+    /*
+    *   Sets account type, based on session username and that usernames account type in the db
+    */
     if ($unemptySess) {
         $username       = $_SESSION['UserName'];
 
@@ -18,6 +35,9 @@
             <h2 class='left'>Plushie Planet</h2>
             <nav class='right'>
                 <ul>
+                    <!-- Outputs appropriate class to show current page based on current variable 
+                        Also has logic to show different buttons based on session activity and session type
+                    -->
                     <li><a <?php if($current == "home") { echo("class='current'"); } ?> href='index.php'>HOME</a></li>
                     <li><a <?php if($current == "cart") { echo("class='current'"); } ?> href='cart.php'>CART</a></li>
                     

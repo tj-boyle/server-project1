@@ -251,24 +251,28 @@ main .form form {
   padding: 7px 14px;
 }
 /* line 170, ../sass/layout.scss */
+main .form form a {
+  color: #787878;
+}
+/* line 174, ../sass/layout.scss */
 main .form form input {
   margin: auto;
   width: 100%;
 }
-/* line 174, ../sass/layout.scss */
+/* line 178, ../sass/layout.scss */
 main .form form input[type="button"] {
   text-align: center;
 }
-/* line 180, ../sass/layout.scss */
+/* line 184, ../sass/layout.scss */
 main .cart {
   height: 91px;
   padding: 7px;
 }
-/* line 184, ../sass/layout.scss */
+/* line 188, ../sass/layout.scss */
 main .cart p {
   white-space: nowrap;
 }
-/* line 189, ../sass/layout.scss */
+/* line 193, ../sass/layout.scss */
 main article {
   height: 150px;
   margin-bottom: 30px;
@@ -281,37 +285,37 @@ main article {
   -o-border-radius: 3px;
   border-radius: 3px;
 }
-/* line 197, ../sass/layout.scss */
+/* line 201, ../sass/layout.scss */
 main article h4 {
   color: #787878;
   border-bottom: 1px dashed #d4d4d4;
   white-space: nowrap;
   overflow: hidden;
 }
-/* line 204, ../sass/layout.scss */
+/* line 208, ../sass/layout.scss */
 main article span {
   font-weight: bold;
 }
-/* line 208, ../sass/layout.scss */
+/* line 212, ../sass/layout.scss */
 main article p {
   height: 65px;
   text-overflow: ellipsis;
   overflow: hidden;
   margin-bottom: 0px;
 }
-/* line 215, ../sass/layout.scss */
+/* line 219, ../sass/layout.scss */
 main article input {
   width: 100%;
 }
-/* line 219, ../sass/layout.scss */
+/* line 223, ../sass/layout.scss */
 main article span {
   border: none;
 }
-/* line 223, ../sass/layout.scss */
+/* line 227, ../sass/layout.scss */
 main article [contenteditable="true"] {
   border: 1px solid #d4d4d4;
 }
-/* line 227, ../sass/layout.scss */
+/* line 231, ../sass/layout.scss */
 main article .a-image {
   height: 150px;
   background-size: cover;
@@ -324,27 +328,27 @@ main article .a-image {
   border-bottom-left-radius: 3px;
   border-bottom: 3px solid #4cd59c;
 }
-/* line 234, ../sass/layout.scss */
+/* line 238, ../sass/layout.scss */
 main article .a-image input {
   position: relative;
   top: 40%;
 }
-/* line 240, ../sass/layout.scss */
+/* line 244, ../sass/layout.scss */
 main article .info {
   padding: 7px 21px 0 0px;
 }
-/* line 244, ../sass/layout.scss */
+/* line 248, ../sass/layout.scss */
 main article .delete, main article .update {
   padding-left: 0;
   padding-right: 0;
   width: 48%;
   display: inline;
 }
-/* line 250, ../sass/layout.scss */
+/* line 254, ../sass/layout.scss */
 main article .delete {
   background-color: #db4e4f;
 }
-/* line 253, ../sass/layout.scss */
+/* line 257, ../sass/layout.scss */
 main article .delete:hover {
   background-color: #b84142;
 }
@@ -362,27 +366,23 @@ main article .delete:hover {
 /* Smaller than standard 960 (devices and browsers) */
 @media only screen and (max-width: 959px) {
   /* add code here */
-  /* line 275, ../sass/layout.scss */
+  /* line 279, ../sass/layout.scss */
   header h2 {
     width: 100%;
     font-size: 48px;
     line-height: 49px;
     text-align: center;
   }
-  /* line 282, ../sass/layout.scss */
+  /* line 286, ../sass/layout.scss */
   header nav {
     width: 100%;
   }
-  /* line 285, ../sass/layout.scss */
+  /* line 290, ../sass/layout.scss */
   header ul {
     text-align: center;
   }
-  /* line 288, ../sass/layout.scss */
-  header a {
-    padding: 4px 2px;
-  }
 
-  /* line 294, ../sass/layout.scss */
+  /* line 297, ../sass/layout.scss */
   main article p {
     height: 45px;
   }
@@ -394,15 +394,15 @@ main article .delete:hover {
 /* All Mobile Sizes (devices and browser) */
 @media only screen and (max-width: 767px) {
   /* add code here */
-  /* line 311, ../sass/layout.scss */
+  /* line 314, ../sass/layout.scss */
   main article .a-image, main article .info {
     width: 48% !important;
   }
-  /* line 315, ../sass/layout.scss */
+  /* line 318, ../sass/layout.scss */
   main article .a-image {
     margin-right: 2%;
   }
-  /* line 319, ../sass/layout.scss */
+  /* line 322, ../sass/layout.scss */
   main article .info {
     margin-left: 2%;
     padding-right: 14px;

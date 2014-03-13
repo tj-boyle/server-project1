@@ -1,9 +1,14 @@
-<?php include("assets/includes/connect.php"); ?>
+<?php 
+    //Connects to database
+    include("assets/includes/connect.php"); ?>
 <!DOCTYPE html>
 <html>
-<?php include_once('assets/includes/head.php'); ?>
+<?php 
+    //Includes head information common among all pages
+    include_once('assets/includes/head.php'); ?>
 <body>
     <?php
+        //Includes header, changes nav based on current page
         $current = "home"; 
         include_once('assets/includes/header.php'); 
     

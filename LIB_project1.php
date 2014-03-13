@@ -209,7 +209,7 @@
         echo($UID);
     }
 
-    /*
+    /**
     * Function to remove all items from cart from current user
     */
     function deleteCart(){
@@ -245,10 +245,8 @@
         echo($Query);
     }
 
-    /**
-    *   
-    *
-    *
+    /**  
+    * Function to update item values 
     */
     function updateItem(){
         /**

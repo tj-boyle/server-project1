@@ -1,31 +1,58 @@
-<?php include("assets/includes/connect.php") ?>
+<?php 
+    //Connects to database
+    include("assets/includes/connect.php"); ?>
 <!DOCTYPE html>
 <html>
-<?php include_once('assets/includes/head.php'); ?>
+<?php 
+    //Includes head information common among all pages
+    include_once('assets/includes/head.php'); ?>
 <body>
     <?php
+        //Includes header, changes nav based on current page
         $current = "login";
         include_once('assets/includes/header.php'); 
     
 
     ?>
 
-    <main role="main" class='container animals'>
+    <main role="main" class='container'>
         <section>
             <h3 class='sixteen columns'>Login</h3>
             <?php 
                 $response = "";
-                
-                if (!empty($_POST['username']) && !empty($_POST['password'])) { 
+
+                /**
+                *   Boolean variable for valid post variables
+                *   @var boolean
+                */
+                $validReg    = !empty($_POST['username']) 
+                            && !empty($_POST['password']);
+
+
+                if ($validReg) { 
                     // Check user login
                     $username = mysqli_real_escape_string($con, $_POST['username']);
                     $password = md5(mysqli_real_escape_string($con, $_POST['password']));
 
-                    $Query = "SELECT * FROM users WHERE UserName = '" . $username  . "' AND Password = '" . $password ."'";
-                    $checkLogin = mysqli_query($con, $Query);
+                    /**
+                    *   Checks if username already exists in users database
+                    *   @var integer
+                    */
+                    $Query = $con->prepare("SELECT * FROM users WHERE UserName = ? AND Password = ?");
+                    $Query->bind_param('ss', $username, $password);
+                    $Query->execute();
+                    $res = $Query->get_result();
+                    $row = $res->fetch_assoc();
+                    $Query->store_result();
+                    $numRows = $Query->num_rows;
 
-                    if (mysqli_num_rows($checkLogin) == 1) {
-                        $row = mysqli_fetch_array($checkLogin);
+                    /**
+                    *   If the login is correct, sets session variables
+                    *   Otherwise sets the response variable to not found in order for 
+                    *   appropriate error message to be shown
+                    */
+                    if ($row) {
+
                         $email = $row['Email'];
                        
                         $_SESSION['UserName'] = $username;
@@ -39,6 +66,7 @@
                     }
                 } 
 
+                //Formtype variable for use in the form include
                 $formtype = "login";
                 include("assets/includes/form.php");
             ?>

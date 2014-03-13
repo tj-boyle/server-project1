@@ -1,9 +1,14 @@
-<?php include("assets/includes/connect.php"); ?>
+<?php 
+    //Connects to database
+    include("assets/includes/connect.php"); ?>
 <!DOCTYPE html>
 <html>
-<?php include_once('assets/includes/head.php'); ?>
+<?php 
+    //Includes head information common among all pages
+    include_once('assets/includes/head.php'); ?>
 <body>
     <?php
+        //Includes header, changes nav based on current page
         $current = "admin";
         include_once('assets/includes/header.php'); 
         
@@ -14,7 +19,13 @@
         <section>
             <h3 class='sixteen columns'>Admin Panel</h3>
             <?php 
-                if (!empty($_SESSION['LoggedIn']) && !empty($_SESSION['UserName'])) { 
+                /**
+                *   Boolean variable for session active
+                *   @var boolean
+                */
+                $unemptySess = !empty($_SESSION['LoggedIn']) && !empty($_SESSION['UserName']);
+
+                if ($unemptySess) { 
                     
                     /**
                     *   Save username from SESSION

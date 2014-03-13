@@ -3,7 +3,7 @@
 
 ###TODO:
 ...
-+ Enable password protection for admin page
++ ~~Enable password protection for admin page~~
 + Better validation alerts
   * Sale Items
   * Disable less than 3 sale items
@@ -46,7 +46,7 @@ tags and changing the order of creating the sections of the pages and CSS files 
   * You should create functions that go beyond what we did in class.
   * This file will be included (or required) by the other pages.
 + admin.php will:
-⋅⋅* Pick an item to edit and save the changes. Make sure that the number of items on sale constraint doesn’t get violated.
+  * Pick an item to edit and save the changes. Make sure that the number of items on sale constraint doesn’t get violated.
   * Add an item for sale. The picture can be on the server already (or above and beyond allow uploading of a picture). Again, if it is on sale, make sure to follow the constraint.
   * No editing or adding will be done without a correct password. (Above and beyond would be to add a login with access control and sessions instead of a password every time).
 + Just in case: create backups of your catalog table when you have completed the site.
