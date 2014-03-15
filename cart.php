@@ -1,4 +1,7 @@
 <?php 
+    ini_set('display_startup_errors',1);
+    ini_set('display_errors',1);
+    error_reporting(-1);
     //Connects to database
     include("assets/includes/connect.php"); ?>
 <!DOCTYPE html>
@@ -32,26 +35,27 @@
                     *   @var string
                     */
                     $username       = $_SESSION['UserName'];
-
+                    
                     /**
-                    *   Retrieves the current session UID
+                    *   Save UID from SESSION
                     *   @var integer
                     */
-                    $Query = $con->prepare("SELECT UID FROM users WHERE UserName = ?");
-                    $Query->bind_param('s', $username);
-                    $Query->execute();
-                    $res = $Query->get_result();
-                    $row = $res->fetch_assoc();
-                    $UID            = $row['UID'];
-                    
+                    $UID = $_SESSION['UID'];
+
+
                     //Selects all from current users's cart
-                    $Query = "SELECT * FROM `cart` WHERE UID = $UID";
-                    $v_TheResult = mysqli_query ($con, $Query); 
+                    $Query = $con->prepare("SELECT id, product_name, description, price FROM `cart` WHERE UID = ?");
+                    $Query->bind_param('i', $UID);
+                    $Query->execute();
+                    $Query->bind_result($id, $product_name, $description, $price);
+                    //$v_TheResult = mysqli_query ($con, $Query); 
                     
                     //Goes through query results
-                    while($row = mysqli_fetch_array($v_TheResult)){
+                    while($Query->fetch()){
                         include("assets/includes/animal.php");
-                    }  
+                    }
+                    $Query->close();
+
                 }
             ?>
             <input class='sixteen columns' type='button' value='EMPTY CART'>

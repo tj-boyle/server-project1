@@ -185,20 +185,20 @@
         */
         $username       = $_SESSION['UserName'];
 
-        /**
-        *   Retrieves the current session UID
-        *   @var integer
-        */
-        $Query = $con->prepare("SELECT UID FROM users WHERE UserName = ?");
-        $Query->bind_param('s', $username);
-        $Query->execute();
-        $res = $Query->get_result();
-        $row = $res->fetch_assoc();
-        $UID            = $row['UID'];
+        // /**
+        // *   Retrieves the current session UID
+        // *   @var integer
+        // */
+        // $Query = $con->prepare("SELECT UID FROM users WHERE UserName = ?");
+        // $Query->bind_param('s', $username);
+        // $Query->execute();
+        // $res = $Query->get_result();
+        // $row = $res->fetch_assoc();
+        // $UID            = $row['UID'];
         
         //Inserts into current users's cart        
         $Query = $con->prepare("INSERT INTO cart(product_name, description, price, UID) VALUES (?,?,?,?)");
-        $Query->bind_param('ssii', $product_name, $description, $price, $UID);
+        $Query->bind_param('ssii', $product_name, $description, $price, $_SESSION['UID']);
         $Query->execute(); 
 
         //Lowers appropriate product quantity by 1
@@ -224,25 +224,25 @@
         */
         $username       = $_SESSION['UserName'];
 
-        /**
-        *   Retrieves the current session UID
-        *   @var integer
-        */
-        $Query = $con->prepare("SELECT UID FROM users WHERE UserName = ?");
-        $Query->bind_param('s', $username);
-        $Query->execute();
-        $res = $Query->get_result();
-        $row = $res->fetch_assoc();
-        $UID            = $row['UID'];
+        // /**
+        // *   Retrieves the current session UID
+        // *   @var integer
+        // */
+        // $Query = $con->prepare("SELECT UID FROM users WHERE UserName = ?");
+        // $Query->bind_param('s', $username);
+        // $Query->execute();
+        // $res = $Query->get_result();
+        // $row = $res->fetch_assoc();
+        // $UID            = $row['UID'];
 
         //Deletes appropriate items from cart for current user
         $Query = $con->prepare("DELETE FROM `cart` WHERE UID = ?");
-        $Query->bind_param('i', $UID);
+        $Query->bind_param('i', $_SESSION['UID']);
         $Query->execute(); 
 
         //Goes through query results
         $v_TheResult = mysqli_query ($con, $Query);
-        echo($Query);
+        //echo($Query);
     }
 
     /**  
@@ -301,7 +301,8 @@
         $Query->bind_param('ssiisii', $product_name, $description, $price, $quantity, $picture, $sale_price, $id);
         $Query->execute();
 
-        echo($Query);
+        //echo("Queried");
+        echo($picture);
     }
 
     /*
@@ -323,6 +324,7 @@
         $Query = $con->prepare("DELETE FROM products WHERE id=?");
         $Query->bind_param('i', $id);
         $Query->execute();
+        $Quiery->close();
         echo($id);
     }
 
@@ -381,6 +383,7 @@
         $Query = $con->prepare("INSERT INTO products(product_name, description, price, quantity, picture, sale_price) VALUES (?, ?, ?, ?, ?, ?)");
         $Query->bind_param('ssiisi', $product_name, $description, $price, $quantity, $picture, $sale_price);
         $Query->execute();
-        echo($Query);
+        $Query->close();
+        //echo($Query);
     }
 ?>

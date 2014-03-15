@@ -24,9 +24,13 @@
         $Query = $con->prepare("SELECT Type FROM users WHERE UserName = ?");
         $Query->bind_param('s', $username);
         $Query->execute();
-        $res = $Query->get_result();
-        $row = $res->fetch_assoc();
-        $type            = $row['Type'];
+        // $res = $Query->get_result();
+        // $row = $res->fetch_assoc();
+        $Query->bind_result($type);
+        // $Query->store_result();
+        $Query->fetch();
+        $Query->close();
+        // $type            = $row['Type'];
     }
 ?>
 <header>

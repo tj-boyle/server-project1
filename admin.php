@@ -290,6 +290,7 @@
             $price          = $this_item.find("#orig").html();
             $quantity       = $this_item.find("#quantity").html();
             $picture        = $this_item.find(".a-image input").attr("value");
+            console.log($picture);
             $sale_price     = $this_item.find("#price").html();
 
             console.log("This sale price is: " + $sale_price);

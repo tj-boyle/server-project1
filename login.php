@@ -1,4 +1,7 @@
 <?php 
+    // ini_set('display_startup_errors',1);
+    // ini_set('display_errors',1);
+    // error_reporting(-1);
     //Connects to database
     include("assets/includes/connect.php"); ?>
 <!DOCTYPE html>
@@ -38,26 +41,26 @@
                     *   Checks if username already exists in users database
                     *   @var integer
                     */
-                    $Query = $con->prepare("SELECT * FROM users WHERE UserName = ? AND Password = ?");
+                    $Query = $con->prepare("SELECT UID, Email FROM users WHERE UserName = ? AND Password = ?");
                     $Query->bind_param('ss', $username, $password);
                     $Query->execute();
-                    $res = $Query->get_result();
-                    $row = $res->fetch_assoc();
-                    $Query->store_result();
-                    $numRows = $Query->num_rows;
+                    $Query->bind_result($UID, $email);
+                    $Query->fetch();
+                    $Query->close();
 
                     /**
                     *   If the login is correct, sets session variables
                     *   Otherwise sets the response variable to not found in order for 
                     *   appropriate error message to be shown
                     */
-                    if ($row) {
+                    if (!empty($email)) {
 
-                        $email = $row['Email'];
+                        //$email = $row['Email'];
                        
-                        $_SESSION['UserName'] = $username;
-                        $_SESSION['Email'] = $email;
-                        $_SESSION['LoggedIn'] = 1;
+                        $_SESSION['UserName']   = $username;
+                        $_SESSION['Email']      = $email;
+                        $_SESSION['UID']        = $UID;
+                        $_SESSION['LoggedIn']   = 1;
 
                         echo "<meta http-equiv='refresh' content='0;URL=index.php' />";
                     }

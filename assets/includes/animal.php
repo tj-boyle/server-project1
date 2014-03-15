@@ -93,10 +93,10 @@
     * quantity and description in a list that is only one column filling the width of the container
     */
     elseif($current == "cart"): ?>
-    <article class='sixteen columns cart' id="<?=$row['id']?>">
-        <h4><?=$row["product_name"]?></h4>
-        $<span id='price'><?=$row['price']?></span> - <span id='quantity'>1</span>
-        <p><?=$row["description"]?></p>
+    <article class='sixteen columns cart' id="<?=$id ?>">
+        <h4><?=$product_name ?></h4>
+        $<span id='price'><?=$price ?></span> - <span id='quantity'>1</span>
+        <p><?=$description ?></p>
     </article>
 
 <?php endif; ?>
