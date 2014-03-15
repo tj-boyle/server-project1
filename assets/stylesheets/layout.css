@@ -205,7 +205,7 @@ header a {
   padding: 4px 7px;
   display: inline-block;
 }
-/* line 141, ../sass/layout.scss */
+/* line 140, ../sass/layout.scss */
 header .account {
   background-color: #4cd59c;
   -webkit-border-radius: 4px;
@@ -215,16 +215,16 @@ header .account {
   border-radius: 4px;
   border-bottom: 3px solid #3ba679;
 }
-/* line 146, ../sass/layout.scss */
-header .account:hover {
+/* line 145, ../sass/layout.scss */
+header .account:hover, header .account.current {
   background-color: #3ba679;
 }
 
-/* line 151, ../sass/layout.scss */
+/* line 150, ../sass/layout.scss */
 main {
-  margin-top: 28px !important;
+  margin: 28px 0px !important;
 }
-/* line 154, ../sass/layout.scss */
+/* line 153, ../sass/layout.scss */
 main h3 {
   color: white;
   background-color: #4cd59c;
@@ -237,13 +237,15 @@ main h3 {
   border-radius: 4px;
   text-shadow: #3ba679 1px 2px 0;
 }
-/* line 163, ../sass/layout.scss */
-main .form {
+/* line 162, ../sass/layout.scss */
+main form {
+  -webkit-box-sizing: initial;
+  -moz-box-sizing: initial;
   box-sizing: initial;
-  margin-top: 28px;
 }
-/* line 167, ../sass/layout.scss */
-main .form form {
+/* line 165, ../sass/layout.scss */
+main form fieldset {
+  margin-top: 28px;
   background-color: white;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
@@ -251,30 +253,27 @@ main .form form {
   -o-border-radius: 4px;
   border-radius: 4px;
   padding: 7px 14px;
-}
-/* line 172, ../sass/layout.scss */
-main .form form a {
-  color: #787878;
-}
-/* line 176, ../sass/layout.scss */
-main .form form input {
-  margin: auto;
   width: 100%;
 }
-/* line 180, ../sass/layout.scss */
-main .form form input[type="button"] {
-  text-align: center;
+/* line 173, ../sass/layout.scss */
+main form a {
+  color: #787878;
 }
-/* line 186, ../sass/layout.scss */
+/* line 177, ../sass/layout.scss */
+main form input[type="text"], main form input[type="submit"], main form input[type="password"] {
+  margin: auto;
+  width: 100% !important;
+}
+/* line 183, ../sass/layout.scss */
 main .cart {
   height: 91px;
   padding: 7px;
 }
-/* line 190, ../sass/layout.scss */
+/* line 187, ../sass/layout.scss */
 main .cart p {
   white-space: nowrap;
 }
-/* line 195, ../sass/layout.scss */
+/* line 192, ../sass/layout.scss */
 main article {
   height: 150px;
   margin-bottom: 30px;
@@ -287,37 +286,30 @@ main article {
   -o-border-radius: 3px;
   border-radius: 3px;
 }
-/* line 203, ../sass/layout.scss */
+/* line 200, ../sass/layout.scss */
 main article h4 {
   color: #787878;
   border-bottom: 1px dashed #d4d4d4;
   white-space: nowrap;
   overflow: hidden;
 }
-/* line 210, ../sass/layout.scss */
+/* line 207, ../sass/layout.scss */
 main article span {
   font-weight: bold;
+  border: none;
 }
-/* line 214, ../sass/layout.scss */
+/* line 212, ../sass/layout.scss */
 main article p {
   height: 65px;
   text-overflow: ellipsis;
   overflow: hidden;
   margin-bottom: 0px;
 }
-/* line 221, ../sass/layout.scss */
-main article input {
-  width: 100%;
-}
-/* line 225, ../sass/layout.scss */
-main article span {
-  border: none;
-}
-/* line 229, ../sass/layout.scss */
+/* line 219, ../sass/layout.scss */
 main article [contenteditable="true"] {
   border: 1px solid #d4d4d4;
 }
-/* line 233, ../sass/layout.scss */
+/* line 223, ../sass/layout.scss */
 main article .a-image {
   height: 150px;
   background-size: cover;
@@ -330,29 +322,49 @@ main article .a-image {
   border-bottom-left-radius: 3px;
   border-bottom: 3px solid #4cd59c;
 }
-/* line 240, ../sass/layout.scss */
+/* line 230, ../sass/layout.scss */
 main article .a-image input {
   position: relative;
   top: 40%;
 }
-/* line 246, ../sass/layout.scss */
+/* line 236, ../sass/layout.scss */
 main article .info {
   padding: 7px 21px 0 0px;
 }
-/* line 250, ../sass/layout.scss */
+/* line 240, ../sass/layout.scss */
+main article input {
+  width: 100%;
+}
+/* line 244, ../sass/layout.scss */
 main article .delete, main article .update {
   padding-left: 0;
   padding-right: 0;
   width: 48%;
   display: inline;
 }
-/* line 256, ../sass/layout.scss */
+/* line 250, ../sass/layout.scss */
 main article .delete {
   background-color: #db4e4f;
 }
-/* line 259, ../sass/layout.scss */
+/* line 253, ../sass/layout.scss */
 main article .delete:hover {
   background-color: #b84142;
+}
+/* line 260, ../sass/layout.scss */
+main .holder a {
+  margin: 0 14px 0 0;
+  padding: 4px 7px;
+  background-color: #ff9a38;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  border-bottom: 3px solid #995c22;
+}
+/* line 267, ../sass/layout.scss */
+main .holder a:hover, main .holder a.jp-current {
+  background-color: #995c22;
 }
 
 /* PAGE STYLES
@@ -368,23 +380,23 @@ main article .delete:hover {
 /* Smaller than standard 960 (devices and browsers) */
 @media only screen and (max-width: 959px) {
   /* add code here */
-  /* line 281, ../sass/layout.scss */
+  /* line 289, ../sass/layout.scss */
   header h2 {
     width: 100%;
     font-size: 48px;
     line-height: 49px;
     text-align: center;
   }
-  /* line 288, ../sass/layout.scss */
+  /* line 296, ../sass/layout.scss */
   header nav {
     width: 100%;
   }
-  /* line 292, ../sass/layout.scss */
+  /* line 300, ../sass/layout.scss */
   header ul {
     text-align: center;
   }
 
-  /* line 299, ../sass/layout.scss */
+  /* line 307, ../sass/layout.scss */
   main article p {
     height: 45px;
   }
@@ -396,15 +408,15 @@ main article .delete:hover {
 /* All Mobile Sizes (devices and browser) */
 @media only screen and (max-width: 767px) {
   /* add code here */
-  /* line 316, ../sass/layout.scss */
+  /* line 324, ../sass/layout.scss */
   main article .a-image, main article .info {
     width: 48% !important;
   }
-  /* line 320, ../sass/layout.scss */
+  /* line 328, ../sass/layout.scss */
   main article .a-image {
     margin-right: 2%;
   }
-  /* line 324, ../sass/layout.scss */
+  /* line 332, ../sass/layout.scss */
   main article .info {
     margin-left: 2%;
     padding-right: 14px;
