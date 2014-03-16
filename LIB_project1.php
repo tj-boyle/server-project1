@@ -178,12 +178,11 @@
         */
         $price          = $_POST['Price'];
 
-
         /**
-        *   Save username from SESSION
+        *   Save UID from SESSION
         *   @var string
         */
-        $username       = $_SESSION['UserName'];
+        $UID       = $_SESSION['UID'];
 
         // /**
         // *   Retrieves the current session UID
@@ -197,14 +196,22 @@
         // $UID            = $row['UID'];
         
         //Inserts into current users's cart        
-        $Query = $con->prepare("INSERT INTO cart(product_name, description, price, UID) VALUES (?,?,?,?)");
-        $Query->bind_param('ssii', $product_name, $description, $price, $_SESSION['UID']);
+        $Query = $con->prepare(
+            "INSERT INTO cart(id, product_name, description, price, UID) 
+            VALUES (?,?,?,?,?)
+            ON DUPLICATE KEY
+            UPDATE quantity = quantity + 1
+            "
+        );
+        $Query->bind_param('issii', $id, $product_name, $description, $price, $UID);
         $Query->execute(); 
+        $Query->close();
 
         //Lowers appropriate product quantity by 1
         $Query = $con->prepare("UPDATE products SET quantity = quantity - 1 WHERE id = ?");
         $Query->bind_param('i', $id);
         $Query->execute();
+        $Query->close();
         
         echo($UID);
     }

@@ -36,16 +36,17 @@
                     // If account type is 1, it is an administrator account
                     if ($type == 1) {
 
-                        //Query to select all from products table
-                        $Query = "SELECT * FROM `products`";
-                        $v_TheResult = mysqli_query ($con, $Query); 
-                        
+                         //Selects all products
+                        $Query = $con->prepare("SELECT * FROM `products`");
+                        $Query->execute();
+                        $Query->bind_result($id, $product_name, $description, $price, $quantity, $picture, $sale_price);
+                       
                         //Goes through query results, includes animal with editable content
                         $new = false;
-                        while ($row = mysqli_fetch_array($v_TheResult)) { 
+                        while ($Query->fetch()) { 
                             
                             //Increments numSale variable
-                            if ($row["sale_price"] > 0) {
+                            if ($sale_price > 0) {
                                 $numSale++;
                             }
 
@@ -104,10 +105,10 @@
                 if($sale_price > 0){
                     numSale++;
                 }
-
+                console.log($(this).find("#price").html());
             });
 
-            // console.log("numSale = " + numSale);
+            console.log("numSale = " + numSale);
         }
 
         //On update button click, check data

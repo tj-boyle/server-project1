@@ -21,24 +21,24 @@
     * Gets info from database row
     */
     if ($current == "home" || ($current == "admin" && $new == false)) : ?>
-    <article class='eight columns' id="<?=$row['id']?>">
-        <div class='four columns alpha a-image left' style="background-image: url('<?=$row['picture']?>');">
+    <article class='eight columns' id="<?= $id ?>">
+        <div class='four columns alpha a-image left' style="background-image: url('<?= $picture ?>');">
             <?php 
                 //If current is admin with a session active, put an input over the picture
                 if ($current == "admin" && $unemptySess) : ?>
-                <input type='text' value="<?=$row['picture']?>">
+                <input type='text' value="<?= $picture ?>">
             <?php endif; ?>
         </div>
         <div class='four columns omega info right'>
-            <h4><?=$row["product_name"]?></h4>
+            <h4><?= $product_name ?></h4>
 
             <?php 
             /**
             * If current is home and the sale price is 0, should output a row that
             * Doesnt have a Sale section
             */
-            if ($current == "home" && $row['sale_price'] == 0): ?>
-                $<span id='price'><?=$row['price']?></span> - <span id='quantity'><?=$row["quantity"]?></span> left
+            if ($current == "home" && $sale_price == 0): ?>
+                $<span id='price'><?= $price ?></span> - <span id='quantity'><?= $quantity ?></span> left
             
             <?php 
             /**
@@ -46,11 +46,11 @@
             * zero, OR if current is admin
             */
             else: ?>
-                Sale: $<span id='price'><?=$row["sale_price"]?></span> - Orig: $<span id='orig'><?=$row['price']?></span> - <span id='quantity'><?=$row["quantity"]?></span> left
+                Sale: $<span id='price'><?= $sale_price ?></span> - Orig: $<span id='orig'><?= $price ?></span> - <span id='quantity'><?= $quantity ?></span> left
             
             <?php endif; ?>
             
-            <p><?=$row["description"]?></p>
+            <p><?= $description ?></p>
             
             <?php 
             /**
@@ -95,7 +95,7 @@
     elseif($current == "cart"): ?>
     <article class='sixteen columns cart' id="<?=$id ?>">
         <h4><?=$product_name ?></h4>
-        $<span id='price'><?=$price ?></span> - <span id='quantity'>1</span>
+        $<span id='price'><?= $price ?></span> - <span id='quantity'><?= $quantity ?></span>
         <p><?=$description ?></p>
     </article>
 

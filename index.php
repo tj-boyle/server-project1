@@ -1,11 +1,18 @@
 <?php 
+    ini_set('display_startup_errors',1);
+    ini_set('display_errors',1);
+    error_reporting(-1);
     //Connects to database
-    include("assets/includes/connect.php"); ?>
+    include("assets/includes/connect.php"); 
+?>
 <!DOCTYPE html>
 <html>
+
 <?php 
     //Includes head information common among all pages
-    include_once('assets/includes/head.php'); ?>
+    include_once('assets/includes/head.php'); 
+?>
+
 <body>
     <?php
         //Includes header, changes nav based on current page
@@ -19,33 +26,40 @@
         <section>
             <h3 class='sixteen columns'>Sale</h3>
             <?php
-                //Selects all products on sale and show them in the sale section
-                $Query = "SELECT * FROM `products` WHERE `sale_price` > 0";
-                $v_TheResult = mysqli_query ($con, $Query); 
-                
+
+                //Selects all products
+                $Query = $con->prepare("SELECT * FROM `products` WHERE `sale_price` > 0");
+                $Query->execute();
+                $Query->bind_result($id, $product_name, $description, $price, $quantity, $picture, $sale_price);
+
                 //Goes through query results
-                while($row = mysqli_fetch_array($v_TheResult)){ 
+                while ($Query->fetch()) {
                     include("assets/includes/animal.php");
                 }
+
+                $Query->close();
             ?>
         </section>
         <section>
             <h3 class='sixteen columns'>Catalog</h3>
             <div id='itemContainer'>
                 <?php
-                    //Selects all products not on sale and shows them in the catalog section
-                    $Query = "SELECT * FROM `products` WHERE `sale_price` = 0";
-                    $v_TheResult = mysqli_query ($con, $Query); 
-                    
+
+                    //Selects all products
+                    $Query = $con->prepare("SELECT * FROM `products` WHERE `sale_price` = 0");
+                    $Query->execute();
+                    $Query->bind_result($id, $product_name, $description, $price, $quantity, $picture, $sale_price);
+
                     //Goes through query results
-                    while($row = mysqli_fetch_array($v_TheResult)){ 
+                    while ($Query->fetch()) {
                         include("assets/includes/animal.php");
                     }
+
+                    $Query->close();
                 ?>
             </div>
             <div class="sixteen columns holder"></div>
         </section>
-        
     </main>
     
     <script>
@@ -95,7 +109,7 @@
                     "Id":           $id,
                     "Product_name": $product_name,
                     "Description":  $description,
-                    "Price":        $price
+                    "Price":        $price,
                 },
                 success: function(res){
                     //Update quantity on ajax call success

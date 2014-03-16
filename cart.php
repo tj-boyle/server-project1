@@ -1,14 +1,15 @@
 <?php 
-    ini_set('display_startup_errors',1);
-    ini_set('display_errors',1);
-    error_reporting(-1);
     //Connects to database
-    include("assets/includes/connect.php"); ?>
+    include("assets/includes/connect.php"); 
+?>
 <!DOCTYPE html>
 <html>
+
 <?php 
     //Includes head information common among all pages
-    include_once('assets/includes/head.php'); ?>
+    include_once('assets/includes/head.php'); 
+?>
+
 <body>
     <?php
         //Includes header, changes nav based on current page
@@ -29,7 +30,6 @@
                 $unemptySess = !empty($_SESSION['LoggedIn']) && !empty($_SESSION['UserName']);
 
                 if ($unemptySess) { 
-
                     /**
                     *   Save username from SESSION
                     *   @var string
@@ -44,18 +44,19 @@
 
 
                     //Selects all from current users's cart
-                    $Query = $con->prepare("SELECT id, product_name, description, price FROM `cart` WHERE UID = ?");
+                    $Query = $con->prepare("SELECT id, product_name, description, price, quantity FROM `cart` WHERE UID = ?");
                     $Query->bind_param('i', $UID);
                     $Query->execute();
-                    $Query->bind_result($id, $product_name, $description, $price);
+                    $Query->bind_result($id, $product_name, $description, $price, $quantity);
                     //$v_TheResult = mysqli_query ($con, $Query); 
                     
+                    //var_dump($Query);
                     //Goes through query results
-                    while($Query->fetch()){
+                    while ($Query->fetch()) {
                         include("assets/includes/animal.php");
                     }
-                    $Query->close();
 
+                    $Query->close();
                 }
             ?>
             <input class='sixteen columns' type='button' value='EMPTY CART'>
