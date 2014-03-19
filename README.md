@@ -3,12 +3,10 @@
 
 ###TODO
 ---
-+ Ajax calls return 500 internal server error
-+ Fix button look on mobile devices
 + Database entries
   * More items
   * Remove placeholder text
-
++ Ajax call forms
 
 ###Requirements
 ---
