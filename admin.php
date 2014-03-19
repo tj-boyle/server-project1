@@ -85,9 +85,9 @@
             $("article").each(function(){
                 $(this).find(".a-image input").attr("contenteditable","true");
                 $(this).find("h4").attr("contenteditable","true");
-                $(this).find("#price").attr("contenteditable","true");
-                $(this).find("#orig").attr("contenteditable","true");
-                $(this).find("#quantity").attr("contenteditable","true");
+                $(this).find(".price").attr("contenteditable","true");
+                $(this).find(".orig").attr("contenteditable","true");
+                $(this).find(".quantity").attr("contenteditable","true");
                 $(this).find("p").attr("contenteditable","true");
             });
 
@@ -101,11 +101,11 @@
             
             //Goes through each article and adds to numSale if price is above 0
             $("article").each(function(){
-                $sale_price     = $(this).find("#price").html();
+                $sale_price     = $(this).find(".price").html();
                 if($sale_price > 0){
                     numSale++;
                 }
-                console.log($(this).find("#price").html());
+                console.log($(this).find(".price").html());
             });
 
             console.log("numSale = " + numSale);
@@ -196,15 +196,15 @@
             $description         = $p.html();
             $description_valid   = false;
 
-            $priceSpan           = $this_item.find("#orig");
+            $priceSpan           = $this_item.find(".orig");
             $price               = $priceSpan.html();
             $price_valid         = false;
             
-            $quantitySpan        = $this_item.find("#quantity");
+            $quantitySpan        = $this_item.find(".quantity");
             $quantity            = $quantitySpan.html();
             $quantity_valid      = false;
 
-            $sale_priceSpan      = $this_item.find("#price");
+            $sale_priceSpan      = $this_item.find(".price");
             $sale_price          = $sale_priceSpan.html();
             $sale_price_valid    = false;
 
@@ -288,11 +288,11 @@
             $id             = $this_item.attr("id");
             $product_name   = $this_item.find("h4").html();
             $description    = $this_item.find("p").html();
-            $price          = $this_item.find("#orig").html();
-            $quantity       = $this_item.find("#quantity").html();
+            $price          = $this_item.find(".orig").html();
+            $quantity       = $this_item.find(".quantity").html();
             $picture        = $this_item.find(".a-image input").attr("value");
             console.log($picture);
-            $sale_price     = $this_item.find("#price").html();
+            $sale_price     = $this_item.find(".price").html();
 
             console.log("This sale price is: " + $sale_price);
 

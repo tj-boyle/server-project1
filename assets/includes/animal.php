@@ -2,7 +2,9 @@
     /**
     *   animal.php
     *   An include file for different pages
-    *   
+    *   Contains logic for various different includes for animal listing
+    *   All variables come from the corresponding page that called the include
+    *
     *   @author Thomas Boyle <tjb2597@rit.edu>   
     *   @version 1.0
     *   
@@ -38,7 +40,8 @@
             * Doesnt have a Sale section
             */
             if ($current == "home" && $sale_price == 0): ?>
-                $<span id='price'><?= $price ?></span> - <span id='quantity'><?= $quantity ?></span> left
+                <div>$<span class='price'><?= $price ?></span></div>
+                <div><span class='quantity'><?= $quantity ?></span> left</div>
             
             <?php 
             /**
@@ -46,7 +49,8 @@
             * zero, OR if current is admin
             */
             else: ?>
-                Sale: $<span id='price'><?= $sale_price ?></span> - Orig: $<span id='orig'><?= $price ?></span> - <span id='quantity'><?= $quantity ?></span> left
+                <div>Dis: $<span class='price'><?= $sale_price ?></span> - Orig: $<span class='orig'><?= $price ?></span></div>
+                <div><span class='quantity'><?= $quantity ?></span> left</div>
             
             <?php endif; ?>
             
@@ -73,7 +77,7 @@
 
 <?php 
     /**
-    * If current is admin and the the new variable is true,
+    * Elseif current is admin and the the new variable is true,
     * Output an box with default values to insert a new animal to the database
     */
     elseif ($current == "admin" && $new == true) : ?>
@@ -81,7 +85,7 @@
         <div class='four columns alpha a-image' style="background-image: url('');"><input type='text' placeholder='Image url...'></div>
         <div class='four columns omega info'>
             <h4> New Plushie</h4>
-            Sale: $<span id='price'>0</span> - Orig: $<span id='orig'>0</span> -<span id='quantity'>0</span>left
+            Dis: $<span class='price'>0</span> - Orig: $<span class='orig'>0</span> -<span class='quantity'>0</span>left
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             <input type='button' value='ADD' class='add'>
         </div>
@@ -95,7 +99,8 @@
     elseif($current == "cart"): ?>
     <article class='sixteen columns cart' id="<?=$id ?>">
         <h4><?=$product_name ?></h4>
-        $<span id='price'><?= $price ?></span> - <span id='quantity'><?= $quantity ?></span>
+        <div>$<span class='price'><?= $price ?></span></div>
+        <div><span class='quantity'><?= $quantity ?></span> in cart</div>
         <p><?=$description ?></p>
     </article>
 

@@ -71,17 +71,17 @@ input[type="button"]:hover,input[type="submit"]:hover{
 .right{ float: right !important;}
 
 input[type="button"],input[type="submit"] {
-    font-weight: bold;
     @include border-radius(4px);
-    color: white;
-    padding: 7px 14px;
-    font-size: 14px;
+    
     background-color: $orange;
     border-bottom: 3px solid $dorange;
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 7px 14px;    
     -webkit-appearance: none;
 }
 input[type="button"]:hover,input[type="submit"]:hover {
-    // background: $orange-border;
     background-color: #C97A2C;
     border-bottom: 3px solid $dorange;
 }
@@ -93,10 +93,10 @@ input[type="button"]:disabled{
 }
 
 a{
-    cursor: pointer;
     color: white;
-    text-decoration: none;
+    cursor: pointer;
     margin-left: 7px;
+    text-decoration: none;
 }
 a.current, a.jp-current, a:hover{
     color: white;
@@ -119,8 +119,9 @@ header{
     }
 
     h2{
-        color: white;
         @include text-shadow($dred 2px 2px 0);
+        
+        color: white;
     }
 
     ul{
@@ -128,18 +129,19 @@ header{
     }
 
     li{
-        list-style-type: none;
         display: inline;
+        list-style-type: none;
     }
 
     a{
-        padding: 4px 7px;  
         display: inline-block;
+        padding: 4px 7px;  
     }
 
     .account{
-        background-color: $teal;
         @include border-radius(4px);
+        
+        background-color: $teal;
         border-bottom: 3px solid $dteal;
     }  
     .account:hover, .account.current{
@@ -147,25 +149,28 @@ header{
     }
 }
 
-main{
-    margin: 28px 0px !important;
+main.container{
+    margin-bottom: 28px;
+    margin-top: 28px;
 
     h3{
-        color: white;
-        background-color: $teal;
-        padding: 7px 14px 11px 14px;
-        margin-bottom: -4px;
         @include border-radius(4px);
         @include text-shadow($dteal 1px 2px 0);
+
+        background-color: $teal;
+        color: white;
+        margin-bottom: -4px;
+        padding: 7px 14px 11px 14px;
     }
         
     form{
         @include box-sizing(initial);
 
         fieldset{
-            margin-top: 28px;
-            background-color: white;
             @include border-radius(4px);
+
+            background-color: white;
+            margin-top: 28px;
             padding: 7px 14px;
             width: 100%;
         }
@@ -176,12 +181,12 @@ main{
 
         input[type="text"],input[type="submit"],input[type="password"]{
             margin: auto;
-            width: 100% !important;
+            width: 100%;
         }
     }
 
     .cart{
-        height: 91px;
+        height: 112px;
         padding: 7px;
 
         p{
@@ -190,30 +195,31 @@ main{
     }
 
     article{
-        height: 150px;
-        margin-bottom: 30px;
+        @include border-radius(3px);
+
         background-color: white;
         border-bottom: 3px solid $teal;
+        height: 150px;
+        margin-bottom: 30px;
         width: 100%;
-        @include border-radius(3px);
         
         h4{
-            color: $dgrey; 
             border-bottom: 1px dashed $grey;    
-            white-space: nowrap;
+            color: $dgrey; 
             overflow: hidden;       
+            white-space: nowrap;
         }
 
         span{
-            font-weight: bold;
             border: none;
+            font-weight: bold;
         }
 
         p{
-            height: 65px;
-            text-overflow: ellipsis;
-            overflow: hidden;
+            height: 45px;
             margin-bottom: 0px;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         [contenteditable="true"]{
@@ -221,11 +227,12 @@ main{
         }
         
         .a-image{
-            height: 150px;
-            background-size: cover;
-            background-position: 50%;
             @include border-left-radius(3px);
+
+            background-position: 50%;
+            background-size: cover;
             border-bottom: 3px solid $teal;
+            height: 150px;
             
             input{
                 position: relative;
@@ -234,7 +241,7 @@ main{
         }
 
         .info{
-            padding: 7px 21px 0 0px;
+            padding: 7px 14px 0 0px;
         }
 
         input{
@@ -242,10 +249,10 @@ main{
         }
 
         .delete, .update{
+            display: inline;
             padding-left: 0;
             padding-right: 0;
             width: 48%;
-            display: inline;
         }
         .delete{
             background-color: $red;
@@ -256,13 +263,13 @@ main{
     }
 
     .holder{
-
         a{
+            @include border-radius(4px);
+
+            background-color: $orange;
+            border-bottom: 3px solid $dorange;
             margin: 0 14px 0 0;
             padding: 4px 7px;
-            background-color: $orange;
-            @include border-radius(4px);
-            border-bottom: 3px solid $dorange;
         }
         a:hover, a.jp-current{
             background-color: $dorange;
@@ -287,10 +294,10 @@ main{
 	/* add code here */
     header{
         h2{
-            width: 100%;
             font-size: 48px;
             line-height: 49px;
             text-align: center;
+            width: 100%;
         }
 
         nav{
@@ -299,14 +306,6 @@ main{
         
         ul{
             text-align: center;
-        }
-    }
-
-    main{
-        article{
-            p{
-                height: 45px;
-            }
         }
     }
 }

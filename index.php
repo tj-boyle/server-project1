@@ -77,7 +77,7 @@
 
             $animals.each(function( index ){
                 $this_item      = $( this );
-                $quantity       = $this_item.find("#quantity").html();
+                $quantity       = $this_item.find(".quantity").html();
                 $button         = $this_item.find("input");
 
                 if($quantity == 0){
@@ -96,8 +96,8 @@
             $id             = $this_item.attr("id");
             $product_name   = $this_item.find("h4").html();
             $description    = $this_item.find("p").html();
-            $price          = $this_item.find("#price").html();
-            $quantity       = $this_item.find("#quantity");
+            $price          = $this_item.find(".price").html();
+            $quantity       = $this_item.find(".quantity");
             $button         = $this_item.find("input");
 
             
