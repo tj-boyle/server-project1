@@ -3,9 +3,11 @@
     include("assets/includes/connect.php"); ?>
 <!DOCTYPE html>
 <html>
+
 <?php 
     //Includes head information common among all pages
     include_once('assets/includes/head.php'); ?>
+    
 <body>
     <?php
         //Includes header, changes nav based on current page
@@ -15,7 +17,7 @@
 
     ?>
 
-    <main role="main" class='container animals'>
+    <main role="main" class='container'>
         <section>
             <h3 class='sixteen columns'>Register</h3>
             <?php

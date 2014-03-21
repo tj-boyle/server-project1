@@ -3,9 +3,11 @@
     include("assets/includes/connect.php"); ?>
 <!DOCTYPE html>
 <html>
+
 <?php 
     //Includes head information common among all pages
     include_once('assets/includes/head.php'); ?>
+
 <body>
     <?php
         //Includes header, changes nav based on current page
@@ -15,7 +17,7 @@
         $numSale = 0;
     ?>
 
-    <main role="main" class='container animals'>
+    <main role="main" class='container'>
         <section>
             <h3 class='sixteen columns'>Admin Panel</h3>
             <?php 
@@ -26,7 +28,6 @@
                 $unemptySess = !empty($_SESSION['LoggedIn']) && !empty($_SESSION['UserName']);
 
                 if ($unemptySess) { 
-                    
                     /**
                     *   Save username from SESSION
                     *   @var string

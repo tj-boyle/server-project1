@@ -1,14 +1,12 @@
 <?php 
     //Connects to database
-    include("assets/includes/connect.php"); 
-?>
+    include("assets/includes/connect.php"); ?>
 <!DOCTYPE html>
 <html>
 
 <?php 
     //Includes head information common among all pages
-    include_once('assets/includes/head.php'); 
-?>
+    include_once('assets/includes/head.php'); ?>
 
 <body>
     <?php
@@ -19,7 +17,7 @@
 
     ?>
 
-    <main role="main" class='container animals'>
+    <main role="main" class='container'>
         <section>
             <h3 class='sixteen columns'>Cart</h3>
             <?php

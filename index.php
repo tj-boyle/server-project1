@@ -1,17 +1,12 @@
 <?php 
-    ini_set('display_startup_errors',1);
-    ini_set('display_errors',1);
-    error_reporting(-1);
     //Connects to database
-    include("assets/includes/connect.php"); 
-?>
+    include("assets/includes/connect.php"); ?>
 <!DOCTYPE html>
 <html>
 
 <?php 
     //Includes head information common among all pages
-    include_once('assets/includes/head.php'); 
-?>
+    include_once('assets/includes/head.php'); ?>
 
 <body>
     <?php
